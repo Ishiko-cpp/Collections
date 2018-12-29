@@ -23,4 +23,18 @@
 #ifndef _ISHIKO_COLLECTIONS_OBSERVABLEVECTOR_H_
 #define _ISHIKO_COLLECTIONS_OBSERVABLEVECTOR_H_
 
+#include <vector>
+
+namespace Ishiko
+{
+
+template<class ElementType>
+class ObservableVector
+{
+private:
+    std::vector<ElementType> m_vector;
+};
+
+};
+
 #endif

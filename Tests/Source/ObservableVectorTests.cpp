@@ -21,10 +21,19 @@
 */
 
 #include "ObservableVectorTests.h"
+#include "Ishiko/Collections/ObservableVector.h"
 
 using namespace Ishiko::TestFramework;
 
 void ObservableVectorTests::AddTests(TestHarness& theTestHarness)
 {
     TestSequence& vectorTestSequence = theTestHarness.appendTestSequence("ObservableVector tests");
+
+    new HeapAllocationErrorsTest("Creation test 1", CreationTest1, vectorTestSequence);
+}
+
+TestResult::EOutcome ObservableVectorTests::CreationTest1()
+{
+    Ishiko::ObservableVector<int> vector;
+    return TestResult::ePassed;
 }

@@ -1,0 +1,20 @@
+setting ISHIKO_COLLECTIONS_ROOT
+{
+    help = "Path to the Ishiko Collections installation";
+    default = '$(ISHIKO)/Collections';
+}
+
+template IshikoCollections
+{
+    includedirs += $(ISHIKO_COLLECTIONS_ROOT)/Include;
+
+    if ($(toolset) == gnu)
+    {
+       libdirs += $(ISHIKO_COLLECTIONS_ROOT)/Lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        libdirs += $(ISHIKO_COLLECTIONS_ROOT)/Lib/$(arch);
+    }
+}
