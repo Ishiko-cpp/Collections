@@ -1,6 +1,6 @@
 toolsets = vs2017 vs2015 vs2013;
 
-vs2015.solutionfile = ../VC15/IshikoCollections.sln;
+vs2017.solutionfile = ../VC15/IshikoCollections.sln;
 vs2015.solutionfile = ../VC14/IshikoCollections.sln;
 vs2013.solutionfile = ../VC12/IshikoCollections.sln;
 
