@@ -30,10 +30,33 @@ void ObservableVectorTests::AddTests(TestHarness& theTestHarness)
     TestSequence& vectorTestSequence = theTestHarness.appendTestSequence("ObservableVector tests");
 
     new HeapAllocationErrorsTest("Creation test 1", CreationTest1, vectorTestSequence);
+
+    new HeapAllocationErrorsTest("pushBack test 1", PushBackTest1, vectorTestSequence);
 }
 
 TestResult::EOutcome ObservableVectorTests::CreationTest1()
 {
-    Ishiko::ObservableVector<int> vector;
-    return TestResult::ePassed;
+    Ishiko::Collections::ObservableVector<int> vector;
+    if (vector.size() == 0)
+    {
+        return TestResult::ePassed;
+    }
+    else
+    {
+        return TestResult::eFailed;
+    }
+}
+
+TestResult::EOutcome ObservableVectorTests::PushBackTest1()
+{
+    Ishiko::Collections::ObservableVector<int> vector;
+    vector.pushBack(123);
+    if ((vector.size() == 1) && (vector[0] == 123))
+    {
+        return TestResult::ePassed;
+    }
+    else
+    {
+        return TestResult::eFailed;
+    }
 }

@@ -27,14 +27,49 @@
 
 namespace Ishiko
 {
+namespace Collections
+{
 
-template<class ElementType>
+template<class T>
 class ObservableVector
 {
+public:
+    T& operator[](size_t pos);
+    const T& operator[](size_t pos) const;
+
+    size_t size() const noexcept;
+
+    void pushBack(T&& value);
+
 private:
-    std::vector<ElementType> m_vector;
+    std::vector<T> m_vector;
 };
 
-};
+}
+}
+
+template<class T>
+T& Ishiko::Collections::ObservableVector<T>::operator[](size_t pos)
+{
+    return m_vector[pos];
+}
+
+template<class T>
+const T& Ishiko::Collections::ObservableVector<T>::operator[](size_t pos) const
+{
+    return m_vector[pos];
+}
+
+template<class T>
+size_t Ishiko::Collections::ObservableVector<T>::size() const noexcept
+{
+    return m_vector.size();
+}
+
+template<class T>
+void Ishiko::Collections::ObservableVector<T>::pushBack(T&& value)
+{
+    m_vector.push_back(value);
+}
 
 #endif
