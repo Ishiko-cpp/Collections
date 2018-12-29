@@ -20,5 +20,6 @@ library IshikoCollections
     headers
     {
         ../../Include/Ishiko/Collections/linkoptions.h
+        ../../Include/Ishiko/Collections/ObservableVector.h
     }
 }

@@ -20,5 +20,8 @@
     <ClInclude Include="..\..\Include\Ishiko\Collections\linkoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\Ishiko\Collections\ObservableVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
