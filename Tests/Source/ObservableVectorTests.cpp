@@ -21,7 +21,6 @@
 */
 
 #include "ObservableVectorTests.h"
-#include "Ishiko/Collections/ObservableVector.h"
 
 using namespace Ishiko::TestFramework;
 
@@ -32,6 +31,7 @@ void ObservableVectorTests::AddTests(TestHarness& theTestHarness)
     new HeapAllocationErrorsTest("Creation test 1", CreationTest1, vectorTestSequence);
 
     new HeapAllocationErrorsTest("pushBack test 1", PushBackTest1, vectorTestSequence);
+    new HeapAllocationErrorsTest("pushBack test 2", PushBackTest2, vectorTestSequence);
 }
 
 TestResult::EOutcome ObservableVectorTests::CreationTest1()
@@ -59,4 +59,31 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest1()
     {
         return TestResult::eFailed;
     }
+}
+
+TestResult::EOutcome ObservableVectorTests::PushBackTest2()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Collections::ObservableVector<int> vector;
+
+    std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
+    vector.observers().push_back(observer);
+
+    vector.pushBack(123);
+    if ((vector.size() == 1) && (vector[0] == 123))
+    {
+        if ((observer->m_additions.size() == 1) &&
+            (observer->m_additions[0] == 0))
+        {
+            result = TestResult::ePassed;
+        }
+    }
+
+    return result;
+}
+
+void IntVectorObserver::onElementAdded()
+{
+    m_additions.push_back(0);
 }

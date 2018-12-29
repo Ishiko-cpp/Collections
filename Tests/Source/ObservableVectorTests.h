@@ -24,6 +24,7 @@
 #define _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
 
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
+#include "Ishiko/Collections/ObservableVector.h"
 
 class ObservableVectorTests
 {
@@ -33,6 +34,15 @@ public:
 private:
     static Ishiko::TestFramework::TestResult::EOutcome CreationTest1();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest2();
+};
+
+class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer
+{
+public:
+    void onElementAdded() override;
+
+    std::vector<int> m_additions;
 };
 
 #endif
