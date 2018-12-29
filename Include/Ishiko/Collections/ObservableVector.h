@@ -38,7 +38,7 @@ public:
     class Observer
     {
     public:
-        virtual void onElementAdded();
+        virtual void onElementAdded(size_t pos, const T& value);
     };
 
     T& operator[](size_t pos);
@@ -59,7 +59,7 @@ private:
 }
 
 template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded()
+void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded(size_t pos, const T& value)
 {
 }
 
@@ -84,13 +84,14 @@ size_t Ishiko::Collections::ObservableVector<T>::size() const noexcept
 template<class T>
 void Ishiko::Collections::ObservableVector<T>::pushBack(T&& value)
 {
+    size_t pos = m_vector.size();
     m_vector.push_back(value);
     for (std::weak_ptr<ObservableVector<T>::Observer>& o : m_observers)
     {
         std::shared_ptr<ObservableVector<T>::Observer> observer = o.lock();
         if (observer)
         {
-            observer->onElementAdded();
+            observer->onElementAdded(pos, value);
         }
     }
 }

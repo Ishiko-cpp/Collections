@@ -32,6 +32,7 @@ void ObservableVectorTests::AddTests(TestHarness& theTestHarness)
 
     new HeapAllocationErrorsTest("pushBack test 1", PushBackTest1, vectorTestSequence);
     new HeapAllocationErrorsTest("pushBack test 2", PushBackTest2, vectorTestSequence);
+    new HeapAllocationErrorsTest("pushBack test 3", PushBackTest3, vectorTestSequence);
 }
 
 TestResult::EOutcome ObservableVectorTests::CreationTest1()
@@ -74,7 +75,7 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest2()
     if ((vector.size() == 1) && (vector[0] == 123))
     {
         if ((observer->m_additions.size() == 1) &&
-            (observer->m_additions[0] == 0))
+            (observer->m_additions[0] == std::pair<size_t, int>(0, 123)))
         {
             result = TestResult::ePassed;
         }
@@ -83,7 +84,33 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest2()
     return result;
 }
 
-void IntVectorObserver::onElementAdded()
+TestResult::EOutcome ObservableVectorTests::PushBackTest3()
 {
-    m_additions.push_back(0);
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Collections::ObservableVector<int> vector;
+
+    std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
+    vector.observers().push_back(observer);
+
+    vector.pushBack(123);
+    vector.pushBack(456);
+    vector.pushBack(789);
+    if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
+    {
+        if ((observer->m_additions.size() == 3) &&
+            (observer->m_additions[0] == std::pair<size_t, int>(0, 123)) &&
+            (observer->m_additions[1] == std::pair<size_t, int>(1, 456)) && 
+            (observer->m_additions[2] == std::pair<size_t, int>(2, 789)))
+        {
+            result = TestResult::ePassed;
+        }
+    }
+
+    return result;
+}
+
+void IntVectorObserver::onElementAdded(size_t pos, const int& value)
+{
+    m_additions.push_back(std::pair<size_t, int>(pos, value));
 }

@@ -35,14 +35,15 @@ private:
     static Ishiko::TestFramework::TestResult::EOutcome CreationTest1();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest1();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest2();
+    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest3();
 };
 
 class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer
 {
 public:
-    void onElementAdded() override;
+    void onElementAdded(size_t pos, const int& value) override;
 
-    std::vector<int> m_additions;
+    std::vector<std::pair<size_t, int>> m_additions;
 };
 
 #endif
