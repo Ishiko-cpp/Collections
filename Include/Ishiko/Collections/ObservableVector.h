@@ -48,6 +48,7 @@ public:
 
     size_t size() const noexcept;
 
+    void pushBack(const T& value);
     void pushBack(T&& value);
 
     std::vector<std::weak_ptr<Observer>>& observers();
@@ -93,6 +94,21 @@ template<class T>
 const T& Ishiko::Collections::ObservableVector<T>::back() const
 {
     return m_vector.back();
+}
+
+template<class T>
+void Ishiko::Collections::ObservableVector<T>::pushBack(const T& value)
+{
+    size_t pos = m_vector.size();
+    m_vector.push_back(value);
+    for (std::weak_ptr<ObservableVector<T>::Observer>& o : m_observers)
+    {
+        std::shared_ptr<ObservableVector<T>::Observer> observer = o.lock();
+        if (observer)
+        {
+            observer->onElementAdded(pos, value);
+        }
+    }
 }
 
 template<class T>
