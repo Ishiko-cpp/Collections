@@ -43,6 +43,8 @@ public:
 
     T& operator[](size_t pos);
     const T& operator[](size_t pos) const;
+    T& back();
+    const T& back() const;
 
     size_t size() const noexcept;
 
@@ -79,6 +81,18 @@ template<class T>
 size_t Ishiko::Collections::ObservableVector<T>::size() const noexcept
 {
     return m_vector.size();
+}
+
+template<class T>
+T& Ishiko::Collections::ObservableVector<T>::back()
+{
+    return m_vector.back();
+}
+
+template<class T>
+const T& Ishiko::Collections::ObservableVector<T>::back() const
+{
+    return m_vector.back();
 }
 
 template<class T>
