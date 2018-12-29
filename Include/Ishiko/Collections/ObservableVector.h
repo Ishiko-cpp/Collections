@@ -24,6 +24,7 @@
 #define _ISHIKO_COLLECTIONS_OBSERVABLEVECTOR_H_
 
 #include <vector>
+#include <memory>
 
 namespace Ishiko
 {
@@ -34,6 +35,12 @@ template<class T>
 class ObservableVector
 {
 public:
+    class Observer
+    {
+    public:
+        virtual void onElementAdded();
+    };
+
     T& operator[](size_t pos);
     const T& operator[](size_t pos) const;
 
@@ -41,11 +48,19 @@ public:
 
     void pushBack(T&& value);
 
+    std::vector<std::weak_ptr<Observer>>& observers();
+
 private:
     std::vector<T> m_vector;
+    std::vector<std::weak_ptr<Observer>> m_observers;
 };
 
 }
+}
+
+template<class T>
+void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded()
+{
 }
 
 template<class T>
@@ -70,6 +85,21 @@ template<class T>
 void Ishiko::Collections::ObservableVector<T>::pushBack(T&& value)
 {
     m_vector.push_back(value);
+    for (std::weak_ptr<ObservableVector<T>::Observer>& o : m_observers)
+    {
+        std::shared_ptr<ObservableVector<T>::Observer> observer = o.lock();
+        if (observer)
+        {
+            observer->onElementAdded();
+        }
+    }
+}
+
+template<class T>
+std::vector<std::weak_ptr<typename Ishiko::Collections::ObservableVector<T>::Observer>>&
+Ishiko::Collections::ObservableVector<T>::observers()
+{
+    return m_observers;
 }
 
 #endif
