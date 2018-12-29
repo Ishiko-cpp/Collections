@@ -21,15 +21,10 @@
 */
 
 #include "ObservableVectorTests.h"
-#include "Ishiko/TestFramework/TestFrameworkCore.h"
 
 using namespace Ishiko::TestFramework;
 
-int main(int argc, char* argv[])
+void ObservableVectorTests::AddTests(TestHarness& theTestHarness)
 {
-    TestHarness theTestHarness("IshikoCollections");
-
-    ObservableVectorTests::AddTests(theTestHarness);
-
-    return theTestHarness.run();
+    TestSequence& vectorTestSequence = theTestHarness.appendTestSequence("ObservableVector tests");
 }

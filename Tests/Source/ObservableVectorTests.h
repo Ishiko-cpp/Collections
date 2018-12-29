@@ -20,16 +20,15 @@
     IN THE SOFTWARE.
 */
 
-#include "ObservableVectorTests.h"
+#ifndef _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
+#define _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
+
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-using namespace Ishiko::TestFramework;
-
-int main(int argc, char* argv[])
+class ObservableVectorTests
 {
-    TestHarness theTestHarness("IshikoCollections");
+public:
+    static void AddTests(Ishiko::TestFramework::TestHarness& theTestHarness);
+};
 
-    ObservableVectorTests::AddTests(theTestHarness);
-
-    return theTestHarness.run();
-}
+#endif

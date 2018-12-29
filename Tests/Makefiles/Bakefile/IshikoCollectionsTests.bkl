@@ -11,8 +11,14 @@ program IshikoCollectionsTests : IshikoTestFrameworkCore
 {
     archs = x86 x86_64;
 
+    headers
+    {
+        ../../Source/ObservableVectorTests.h
+    }
+
     sources
     {
         ../../Source/main.cpp
+        ../../Source/ObservableVectorTests.cpp
     }
 }
