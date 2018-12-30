@@ -50,7 +50,7 @@ public:
         void notifyElementAdded(size_t pos, const T& value);
 
     private:
-        std::vector<std::weak_ptr<Observer>> m_observers;
+        std::vector<std::pair<std::weak_ptr<Observer>, size_t>> m_observers;
     };
 
     T& operator[](size_t pos);
@@ -81,26 +81,44 @@ void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded(size_t p
 template<class T>
 void Ishiko::Collections::ObservableVector<T>::Observers::add(std::shared_ptr<Observer> observer)
 {
-    m_observers.push_back(observer);
+    auto it = std::find_if(m_observers.begin(), m_observers.end(),
+        [&observer](const std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o)
+        {
+            return (o.first.lock() == observer);
+        }
+    );
+    if (it != m_observers.end())
+    {
+        ++it->second;
+    }
+    else
+    {
+        m_observers.push_back(std::pair<std::weak_ptr<Observer>, size_t>(observer, 1));
+    }
 }
 
 template<class T>
 void Ishiko::Collections::ObservableVector<T>::Observers::remove(std::shared_ptr<Observer> observer)
 {
-    m_observers.erase(std::remove_if(m_observers.begin(), m_observers.end(),
-        [&observer](const std::weak_ptr<ObservableVector<T>::Observer>& o)
+    auto it = std::find_if(m_observers.begin(), m_observers.end(),
+        [&observer](const std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o)
         {
-            return (o.lock() == observer);
+            return (o.first.lock() == observer);
         }
-    ));
+    );
+    --it->second;
+    if (it->second == 0)
+    {
+        m_observers.erase(it);
+    }
 }
 
 template<class T>
 void Ishiko::Collections::ObservableVector<T>::Observers::notifyElementAdded(size_t pos, const T& value)
 {
-    for (std::weak_ptr<ObservableVector<T>::Observer>& o : m_observers)
+    for (std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o : m_observers)
     {
-        std::shared_ptr<ObservableVector<T>::Observer> observer = o.lock();
+        std::shared_ptr<ObservableVector<T>::Observer> observer = o.first.lock();
         if (observer)
         {
             observer->onElementAdded(pos, value);
