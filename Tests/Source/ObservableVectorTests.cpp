@@ -69,7 +69,7 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest2()
     Ishiko::Collections::ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
-    vector.observers().push_back(observer);
+    vector.observers().add(observer);
 
     vector.pushBack(123);
     if ((vector.size() == 1) && (vector[0] == 123))
@@ -91,7 +91,7 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest3()
     Ishiko::Collections::ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
-    vector.observers().push_back(observer);
+    vector.observers().add(observer);
 
     vector.pushBack(123);
     vector.pushBack(456);

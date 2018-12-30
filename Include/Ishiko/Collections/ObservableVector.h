@@ -41,6 +41,18 @@ public:
         virtual void onElementAdded(size_t pos, const T& value);
     };
 
+    class Observers
+    {
+    public:
+        void add(std::shared_ptr<Observer> observer);
+        void remove(std::shared_ptr<Observer> observer);
+
+        void notifyElementAdded(size_t pos, const T& value);
+
+    private:
+        std::vector<std::weak_ptr<Observer>> m_observers;
+    };
+
     T& operator[](size_t pos);
     const T& operator[](size_t pos) const;
     T& back();
@@ -51,11 +63,11 @@ public:
     void pushBack(const T& value);
     void pushBack(T&& value);
 
-    std::vector<std::weak_ptr<Observer>>& observers();
+    Observers& observers();
 
 private:
     std::vector<T> m_vector;
-    std::vector<std::weak_ptr<Observer>> m_observers;
+    Observers m_observers;
 };
 
 }
@@ -64,6 +76,30 @@ private:
 template<class T>
 void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded(size_t pos, const T& value)
 {
+}
+
+template<class T>
+void Ishiko::Collections::ObservableVector<T>::Observers::add(std::shared_ptr<Observer> observer)
+{
+    m_observers.push_back(observer);
+}
+
+template<class T>
+void Ishiko::Collections::ObservableVector<T>::Observers::remove(std::shared_ptr<Observer> observer)
+{
+}
+
+template<class T>
+void Ishiko::Collections::ObservableVector<T>::Observers::notifyElementAdded(size_t pos, const T& value)
+{
+    for (std::weak_ptr<ObservableVector<T>::Observer>& o : m_observers)
+    {
+        std::shared_ptr<ObservableVector<T>::Observer> observer = o.lock();
+        if (observer)
+        {
+            observer->onElementAdded(pos, value);
+        }
+    }
 }
 
 template<class T>
@@ -101,14 +137,7 @@ void Ishiko::Collections::ObservableVector<T>::pushBack(const T& value)
 {
     size_t pos = m_vector.size();
     m_vector.push_back(value);
-    for (std::weak_ptr<ObservableVector<T>::Observer>& o : m_observers)
-    {
-        std::shared_ptr<ObservableVector<T>::Observer> observer = o.lock();
-        if (observer)
-        {
-            observer->onElementAdded(pos, value);
-        }
-    }
+    m_observers.notifyElementAdded(pos, value);
 }
 
 template<class T>
@@ -116,19 +145,11 @@ void Ishiko::Collections::ObservableVector<T>::pushBack(T&& value)
 {
     size_t pos = m_vector.size();
     m_vector.push_back(value);
-    for (std::weak_ptr<ObservableVector<T>::Observer>& o : m_observers)
-    {
-        std::shared_ptr<ObservableVector<T>::Observer> observer = o.lock();
-        if (observer)
-        {
-            observer->onElementAdded(pos, value);
-        }
-    }
+    m_observers.notifyElementAdded(pos, value);
 }
 
 template<class T>
-std::vector<std::weak_ptr<typename Ishiko::Collections::ObservableVector<T>::Observer>>&
-Ishiko::Collections::ObservableVector<T>::observers()
+typename Ishiko::Collections::ObservableVector<T>::Observers& Ishiko::Collections::ObservableVector<T>::observers()
 {
     return m_observers;
 }
