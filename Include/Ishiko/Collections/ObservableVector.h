@@ -87,6 +87,12 @@ void Ishiko::Collections::ObservableVector<T>::Observers::add(std::shared_ptr<Ob
 template<class T>
 void Ishiko::Collections::ObservableVector<T>::Observers::remove(std::shared_ptr<Observer> observer)
 {
+    m_observers.erase(std::remove_if(m_observers.begin(), m_observers.end(),
+        [&observer](const std::weak_ptr<ObservableVector<T>::Observer>& o)
+        {
+            return (o.lock() == observer);
+        }
+    ));
 }
 
 template<class T>
