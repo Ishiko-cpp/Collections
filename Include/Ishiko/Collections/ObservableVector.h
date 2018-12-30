@@ -106,10 +106,13 @@ void Ishiko::Collections::ObservableVector<T>::Observers::remove(std::shared_ptr
             return (o.first.lock() == observer);
         }
     );
-    --it->second;
-    if (it->second == 0)
+    if (it != m_observers.end())
     {
-        m_observers.erase(it);
+        --it->second;
+        if (it->second == 0)
+        {
+            m_observers.erase(it);
+        }
     }
 }
 
