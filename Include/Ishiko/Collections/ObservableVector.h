@@ -50,6 +50,9 @@ public:
         void notifyElementAdded(size_t pos, const T& value);
 
     private:
+        void removeDeletedObservers();
+
+    private:
         std::vector<std::pair<std::weak_ptr<Observer>, size_t>> m_observers;
     };
 
@@ -126,7 +129,23 @@ void Ishiko::Collections::ObservableVector<T>::Observers::notifyElementAdded(siz
         {
             observer->onElementAdded(pos, value);
         }
+        else
+        {
+            removeDeletedObservers();
+        }
     }
+}
+
+template<class T>
+void Ishiko::Collections::ObservableVector<T>::Observers::removeDeletedObservers()
+{
+    auto it = std::remove_if(m_observers.begin(), m_observers.end(),
+        [](const std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o)
+        {
+            return o.first.expired();
+        }
+    );
+    m_observers.erase(it, m_observers.end());
 }
 
 template<class T>

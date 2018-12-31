@@ -41,6 +41,7 @@ private:
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest1();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest2();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest3();
+    static Ishiko::TestFramework::TestResult::EOutcome ObserverDeletionTest1();
 };
 
 class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer
