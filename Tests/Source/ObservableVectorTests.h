@@ -36,6 +36,9 @@ private:
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest1();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest2();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest3();
+    static Ishiko::TestFramework::TestResult::EOutcome EraseTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome EraseTest2();
+    static Ishiko::TestFramework::TestResult::EOutcome EraseTest3();
     static Ishiko::TestFramework::TestResult::EOutcome TwoObserversTest1();
     static Ishiko::TestFramework::TestResult::EOutcome TheSameObserverTwiceTest1();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest1();
@@ -50,8 +53,11 @@ class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Obs
 public:
     void onElementAdded(const Ishiko::Collections::ObservableVector<int>& source, size_t pos,
         const int& value) override;
+    void onElementsRemoved(const Ishiko::Collections::ObservableVector<int>& source, size_t first,
+        size_t last) override;
 
     std::map<void*, std::vector<std::pair<size_t, int>>> m_additions;
+    std::map<void*, std::vector<std::tuple<size_t, size_t>>> m_deletions;
 };
 
 #endif

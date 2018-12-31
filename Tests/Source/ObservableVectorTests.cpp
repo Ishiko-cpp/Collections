@@ -34,6 +34,10 @@ void ObservableVectorTests::AddTests(TestHarness& theTestHarness)
     new HeapAllocationErrorsTest("pushBack test 2", PushBackTest2, vectorTestSequence);
     new HeapAllocationErrorsTest("pushBack test 3", PushBackTest3, vectorTestSequence);
 
+    new HeapAllocationErrorsTest("erase test 1", EraseTest1, vectorTestSequence);
+    new HeapAllocationErrorsTest("erase test 2", EraseTest2, vectorTestSequence);
+    new HeapAllocationErrorsTest("erase test 3", EraseTest3, vectorTestSequence);
+
     new HeapAllocationErrorsTest("Two observers test 1", TwoObserversTest1, vectorTestSequence);
 
     new HeapAllocationErrorsTest("The same observer twice test 1", TheSameObserverTwiceTest1, vectorTestSequence);
@@ -114,6 +118,71 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest3()
             (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
             (observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
             (observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
+        {
+            result = TestResult::ePassed;
+        }
+    }
+
+    return result;
+}
+
+TestResult::EOutcome ObservableVectorTests::EraseTest1()
+{
+    Ishiko::Collections::ObservableVector<int> vector;
+    vector.pushBack(123);
+    vector.erase(vector.begin());
+    if (vector.size() == 0)
+    {
+        return TestResult::ePassed;
+    }
+    else
+    {
+        return TestResult::eFailed;
+    }
+}
+
+TestResult::EOutcome ObservableVectorTests::EraseTest2()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Collections::ObservableVector<int> vector;
+
+    std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
+    vector.observers().add(observer);
+
+    vector.pushBack(123);
+    vector.erase(vector.begin());
+
+    if (vector.size() == 0)
+    {
+        if ((observer->m_deletions.size() == 1) &&
+            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t>(0, 1)))
+        {
+            result = TestResult::ePassed;
+        }
+    }
+    
+    return result;
+}
+
+TestResult::EOutcome ObservableVectorTests::EraseTest3()
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    Ishiko::Collections::ObservableVector<int> vector;
+
+    std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
+    vector.observers().add(observer);
+
+    vector.pushBack(123);
+    vector.pushBack(456);
+    vector.pushBack(789);
+    vector.erase(vector.begin() + 1, vector.end());
+
+    if (vector.size() == 1)
+    {
+        if ((observer->m_deletions.size() == 1) &&
+            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t>(1, 3)))
         {
             result = TestResult::ePassed;
         }
@@ -338,4 +407,10 @@ void IntVectorObserver::onElementAdded(const Ishiko::Collections::ObservableVect
     const int& value)
 {
     m_additions[(void*)&source].push_back(std::pair<size_t, int>(pos, value));
+}
+
+void IntVectorObserver::onElementsRemoved(const Ishiko::Collections::ObservableVector<int>& source, size_t first,
+    size_t last)
+{
+    m_deletions[(void*)&source].push_back(std::tuple<size_t, size_t>(first, last));
 }

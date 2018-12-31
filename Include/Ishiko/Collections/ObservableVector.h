@@ -31,14 +31,15 @@ namespace Ishiko
 namespace Collections
 {
 
-template<class T>
+template<class T, class Allocator = std::allocator<T>>
 class ObservableVector
 {
 public:
     class Observer
     {
     public:
-        virtual void onElementAdded(const ObservableVector<T>& source, size_t pos, const T& value);
+        virtual void onElementAdded(const ObservableVector<T, Allocator>& source, size_t pos, const T& value);
+        virtual void onElementsRemoved(const ObservableVector<T, Allocator>& source, size_t first, size_t last);
     };
 
     class Observers
@@ -47,7 +48,8 @@ public:
         void add(std::shared_ptr<Observer> observer);
         void remove(std::shared_ptr<Observer> observer);
 
-        void notifyElementAdded(const ObservableVector<T>& source, size_t pos, const T& value);
+        void notifyElementAdded(const ObservableVector<T, Allocator>& source, size_t pos, const T& value);
+        void notifyElementsRemoved(const ObservableVector<T, Allocator>& source, size_t first, size_t last);
 
     private:
         void removeDeletedObservers();
@@ -61,32 +63,46 @@ public:
     T& back();
     const T& back() const;
 
+    typename std::vector<T, Allocator>::iterator begin() noexcept;
+    typename std::vector<T, Allocator>::const_iterator begin() const noexcept;
+    typename std::vector<T, Allocator>::iterator end() noexcept;
+    typename std::vector<T, Allocator>::const_iterator end() const noexcept;
+
     size_t size() const noexcept;
 
+    typename std::vector<T, Allocator>::iterator erase(typename std::vector<T, Allocator>::const_iterator pos);
+    typename std::vector<T, Allocator>::iterator erase(typename std::vector<T, Allocator>::const_iterator first,
+        typename std::vector<T, Allocator>::const_iterator last);
     void pushBack(const T& value);
     void pushBack(T&& value);
 
     Observers& observers();
 
 private:
-    std::vector<T> m_vector;
+    std::vector<T, Allocator> m_vector;
     Observers m_observers;
 };
 
 }
 }
 
-template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded(const ObservableVector<T>& source, size_t pos,
-    const T& value)
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::Observer::onElementAdded(
+    const ObservableVector<T, Allocator>& source, size_t pos, const T& value)
 {
 }
 
-template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observers::add(std::shared_ptr<Observer> observer)
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::Observer::onElementsRemoved(
+    const ObservableVector<T, Allocator>& source, size_t first, size_t last)
+{
+}
+
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::Observers::add(std::shared_ptr<Observer> observer)
 {
     auto it = std::find_if(m_observers.begin(), m_observers.end(),
-        [&observer](const std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o)
+        [&observer](const std::pair<std::weak_ptr<ObservableVector<T, Allocator>::Observer>, size_t>& o)
         {
             return (o.first.lock() == observer);
         }
@@ -101,11 +117,11 @@ void Ishiko::Collections::ObservableVector<T>::Observers::add(std::shared_ptr<Ob
     }
 }
 
-template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observers::remove(std::shared_ptr<Observer> observer)
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::Observers::remove(std::shared_ptr<Observer> observer)
 {
     auto it = std::find_if(m_observers.begin(), m_observers.end(),
-        [&observer](const std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o)
+        [&observer](const std::pair<std::weak_ptr<ObservableVector<T, Allocator>::Observer>, size_t>& o)
         {
             return (o.first.lock() == observer);
         }
@@ -120,13 +136,13 @@ void Ishiko::Collections::ObservableVector<T>::Observers::remove(std::shared_ptr
     }
 }
 
-template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observers::notifyElementAdded(const ObservableVector<T>& source,
-    size_t pos, const T& value)
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::Observers::notifyElementAdded(
+    const ObservableVector<T, Allocator>& source, size_t pos, const T& value)
 {
-    for (std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o : m_observers)
+    for (std::pair<std::weak_ptr<ObservableVector<T, Allocator>::Observer>, size_t>& o : m_observers)
     {
-        std::shared_ptr<ObservableVector<T>::Observer> observer = o.first.lock();
+        std::shared_ptr<ObservableVector<T, Allocator>::Observer> observer = o.first.lock();
         if (observer)
         {
             observer->onElementAdded(source, pos, value);
@@ -138,11 +154,29 @@ void Ishiko::Collections::ObservableVector<T>::Observers::notifyElementAdded(con
     }
 }
 
-template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observers::removeDeletedObservers()
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::Observers::notifyElementsRemoved(
+    const ObservableVector<T, Allocator>& source, size_t first, size_t last)
+{
+    for (std::pair<std::weak_ptr<ObservableVector<T, Allocator>::Observer>, size_t>& o : m_observers)
+    {
+        std::shared_ptr<ObservableVector<T, Allocator>::Observer> observer = o.first.lock();
+        if (observer)
+        {
+            observer->onElementsRemoved(source, first, last);
+        }
+        else
+        {
+            removeDeletedObservers();
+        }
+    }
+}
+
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::Observers::removeDeletedObservers()
 {
     auto it = std::remove_if(m_observers.begin(), m_observers.end(),
-        [](const std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o)
+        [](const std::pair<std::weak_ptr<ObservableVector<T, Allocator>::Observer>, size_t>& o)
         {
             return o.first.expired();
         }
@@ -150,54 +184,102 @@ void Ishiko::Collections::ObservableVector<T>::Observers::removeDeletedObservers
     m_observers.erase(it, m_observers.end());
 }
 
-template<class T>
-T& Ishiko::Collections::ObservableVector<T>::operator[](size_t pos)
+template<class T, class Allocator = std::allocator<T>>
+T& Ishiko::Collections::ObservableVector<T, Allocator>::operator[](size_t pos)
 {
     return m_vector[pos];
 }
 
-template<class T>
-const T& Ishiko::Collections::ObservableVector<T>::operator[](size_t pos) const
+template<class T, class Allocator = std::allocator<T>>
+const T& Ishiko::Collections::ObservableVector<T, Allocator>::operator[](size_t pos) const
 {
     return m_vector[pos];
 }
 
-template<class T>
-size_t Ishiko::Collections::ObservableVector<T>::size() const noexcept
+template<class T, class Allocator = std::allocator<T>>
+T& Ishiko::Collections::ObservableVector<T, Allocator>::back()
+{
+    return m_vector.back();
+}
+
+template<class T, class Allocator = std::allocator<T>>
+const T& Ishiko::Collections::ObservableVector<T, Allocator>::back() const
+{
+    return m_vector.back();
+}
+
+template<class T, class Allocator = std::allocator<T>>
+typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVector<T, Allocator>::begin() noexcept
+{
+    return m_vector.begin();
+}
+
+template<class T, class Allocator = std::allocator<T>>
+typename std::vector<T, Allocator>::const_iterator
+Ishiko::Collections::ObservableVector<T, Allocator>::begin() const noexcept
+{
+    return m_vector.begin();
+}
+
+template<class T, class Allocator = std::allocator<T>>
+typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVector<T, Allocator>::end() noexcept
+{
+    return m_vector.end();
+}
+
+template<class T, class Allocator = std::allocator<T>>
+typename std::vector<T, Allocator>::const_iterator
+Ishiko::Collections::ObservableVector<T, Allocator>::end() const noexcept
+{
+    return m_vector.end();
+}
+
+template<class T, class Allocator = std::allocator<T>>
+size_t Ishiko::Collections::ObservableVector<T, Allocator>::size() const noexcept
 {
     return m_vector.size();
 }
 
-template<class T>
-T& Ishiko::Collections::ObservableVector<T>::back()
+template<class T, class Allocator = std::allocator<T>>
+typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVector<T, Allocator>::erase(
+    typename std::vector<T, Allocator>::const_iterator pos)
 {
-    return m_vector.back();
+    size_t firstPos = pos - m_vector.cbegin();
+    std::vector<T, Allocator>::iterator result =  m_vector.erase(pos);
+    m_observers.notifyElementsRemoved(*this, firstPos, firstPos + 1);
+    return result;
 }
 
-template<class T>
-const T& Ishiko::Collections::ObservableVector<T>::back() const
+template<class T, class Allocator = std::allocator<T>>
+typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVector<T, Allocator>::erase(
+    typename std::vector<T, Allocator>::const_iterator first, typename std::vector<T, Allocator>::const_iterator last)
 {
-    return m_vector.back();
+    size_t firstPos = first - m_vector.cbegin();
+    size_t lastPos = last - m_vector.cbegin();
+    std::vector<T, Allocator>::iterator result = m_vector.erase(first, last);
+    m_observers.notifyElementsRemoved(*this, firstPos, lastPos);
+    return result;
 }
 
-template<class T>
-void Ishiko::Collections::ObservableVector<T>::pushBack(const T& value)
-{
-    size_t pos = m_vector.size();
-    m_vector.push_back(value);
-    m_observers.notifyElementAdded(pos, value);
-}
-
-template<class T>
-void Ishiko::Collections::ObservableVector<T>::pushBack(T&& value)
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::pushBack(const T& value)
 {
     size_t pos = m_vector.size();
     m_vector.push_back(value);
     m_observers.notifyElementAdded(*this, pos, value);
 }
 
-template<class T>
-typename Ishiko::Collections::ObservableVector<T>::Observers& Ishiko::Collections::ObservableVector<T>::observers()
+template<class T, class Allocator = std::allocator<T>>
+void Ishiko::Collections::ObservableVector<T, Allocator>::pushBack(T&& value)
+{
+    size_t pos = m_vector.size();
+    m_vector.push_back(value);
+    m_observers.notifyElementAdded(*this, pos, value);
+}
+
+template<class T, class Allocator = std::allocator<T>>
+typename Ishiko::Collections::ObservableVector<T, Allocator>::Observers&
+Ishiko::Collections::ObservableVector<T, Allocator>::observers()
 {
     return m_observers;
 }
