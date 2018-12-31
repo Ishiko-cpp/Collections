@@ -156,7 +156,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest2()
     if (vector.size() == 0)
     {
         if ((observer->m_deletions.size() == 1) &&
-            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t>(0, 1)))
+            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })))
         {
             result = TestResult::ePassed;
         }
@@ -182,7 +182,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest3()
     if (vector.size() == 1)
     {
         if ((observer->m_deletions.size() == 1) &&
-            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t>(1, 3)))
+            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })))
         {
             result = TestResult::ePassed;
         }
@@ -410,7 +410,7 @@ void IntVectorObserver::onElementAdded(const Ishiko::Collections::ObservableVect
 }
 
 void IntVectorObserver::onElementsRemoved(const Ishiko::Collections::ObservableVector<int>& source, size_t first,
-    size_t last)
+    size_t last, const std::vector<int>& removedElements)
 {
-    m_deletions[(void*)&source].push_back(std::tuple<size_t, size_t>(first, last));
+    m_deletions[(void*)&source].push_back(std::tuple<size_t, size_t, std::vector<int>>(first, last, removedElements));
 }

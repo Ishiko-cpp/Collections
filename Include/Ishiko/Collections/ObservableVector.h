@@ -39,7 +39,8 @@ public:
     {
     public:
         virtual void onElementAdded(const ObservableVector<T, Allocator>& source, size_t pos, const T& value);
-        virtual void onElementsRemoved(const ObservableVector<T, Allocator>& source, size_t first, size_t last);
+        virtual void onElementsRemoved(const ObservableVector<T, Allocator>& source, size_t first, size_t last,
+            const std::vector<T, Allocator>& removedElements);
     };
 
     class Observers
@@ -49,7 +50,8 @@ public:
         void remove(std::shared_ptr<Observer> observer);
 
         void notifyElementAdded(const ObservableVector<T, Allocator>& source, size_t pos, const T& value);
-        void notifyElementsRemoved(const ObservableVector<T, Allocator>& source, size_t first, size_t last);
+        void notifyElementsRemoved(const ObservableVector<T, Allocator>& source, size_t first, size_t last,
+            const std::vector<T, Allocator>& removedElements);
 
     private:
         void removeDeletedObservers();
@@ -94,7 +96,8 @@ void Ishiko::Collections::ObservableVector<T, Allocator>::Observer::onElementAdd
 
 template<class T, class Allocator = std::allocator<T>>
 void Ishiko::Collections::ObservableVector<T, Allocator>::Observer::onElementsRemoved(
-    const ObservableVector<T, Allocator>& source, size_t first, size_t last)
+    const ObservableVector<T, Allocator>& source, size_t first, size_t last,
+    const std::vector<T, Allocator>& removedElements)
 {
 }
 
@@ -156,14 +159,15 @@ void Ishiko::Collections::ObservableVector<T, Allocator>::Observers::notifyEleme
 
 template<class T, class Allocator = std::allocator<T>>
 void Ishiko::Collections::ObservableVector<T, Allocator>::Observers::notifyElementsRemoved(
-    const ObservableVector<T, Allocator>& source, size_t first, size_t last)
+    const ObservableVector<T, Allocator>& source, size_t first, size_t last,
+    const std::vector<T, Allocator>& removedElements)
 {
     for (std::pair<std::weak_ptr<ObservableVector<T, Allocator>::Observer>, size_t>& o : m_observers)
     {
         std::shared_ptr<ObservableVector<T, Allocator>::Observer> observer = o.first.lock();
         if (observer)
         {
-            observer->onElementsRemoved(source, first, last);
+            observer->onElementsRemoved(source, first, last, removedElements);
         }
         else
         {
@@ -245,8 +249,10 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     typename std::vector<T, Allocator>::const_iterator pos)
 {
     size_t firstPos = pos - m_vector.cbegin();
+    std::vector<T, Allocator> removedElements;
+    removedElements.push_back(*pos);
     std::vector<T, Allocator>::iterator result =  m_vector.erase(pos);
-    m_observers.notifyElementsRemoved(*this, firstPos, firstPos + 1);
+    m_observers.notifyElementsRemoved(*this, firstPos, firstPos + 1, removedElements);
     return result;
 }
 
@@ -256,8 +262,10 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
 {
     size_t firstPos = first - m_vector.cbegin();
     size_t lastPos = last - m_vector.cbegin();
+    std::vector<T, Allocator> removedElements;
+    removedElements.insert(removedElements.end(), first, last);
     std::vector<T, Allocator>::iterator result = m_vector.erase(first, last);
-    m_observers.notifyElementsRemoved(*this, firstPos, lastPos);
+    m_observers.notifyElementsRemoved(*this, firstPos, lastPos, removedElements);
     return result;
 }
 

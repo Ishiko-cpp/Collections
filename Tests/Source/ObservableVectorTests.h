@@ -54,10 +54,10 @@ public:
     void onElementAdded(const Ishiko::Collections::ObservableVector<int>& source, size_t pos,
         const int& value) override;
     void onElementsRemoved(const Ishiko::Collections::ObservableVector<int>& source, size_t first,
-        size_t last) override;
+        size_t last, const std::vector<int>& removedElements) override;
 
     std::map<void*, std::vector<std::pair<size_t, int>>> m_additions;
-    std::map<void*, std::vector<std::tuple<size_t, size_t>>> m_deletions;
+    std::map<void*, std::vector<std::tuple<size_t, size_t, std::vector<int>>>> m_deletions;
 };
 
 #endif
