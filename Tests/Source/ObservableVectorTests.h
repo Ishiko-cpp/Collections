@@ -42,14 +42,16 @@ private:
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest2();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest3();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverDeletionTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome TwoVectorsTest1();
 };
 
 class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer
 {
 public:
-    void onElementAdded(size_t pos, const int& value) override;
+    void onElementAdded(const Ishiko::Collections::ObservableVector<int>& source, size_t pos,
+        const int& value) override;
 
-    std::vector<std::pair<size_t, int>> m_additions;
+    std::map<void*, std::vector<std::pair<size_t, int>>> m_additions;
 };
 
 #endif

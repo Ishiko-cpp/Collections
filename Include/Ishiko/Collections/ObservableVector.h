@@ -38,7 +38,7 @@ public:
     class Observer
     {
     public:
-        virtual void onElementAdded(size_t pos, const T& value);
+        virtual void onElementAdded(const ObservableVector<T>& source, size_t pos, const T& value);
     };
 
     class Observers
@@ -47,7 +47,7 @@ public:
         void add(std::shared_ptr<Observer> observer);
         void remove(std::shared_ptr<Observer> observer);
 
-        void notifyElementAdded(size_t pos, const T& value);
+        void notifyElementAdded(const ObservableVector<T>& source, size_t pos, const T& value);
 
     private:
         void removeDeletedObservers();
@@ -77,7 +77,8 @@ private:
 }
 
 template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded(size_t pos, const T& value)
+void Ishiko::Collections::ObservableVector<T>::Observer::onElementAdded(const ObservableVector<T>& source, size_t pos,
+    const T& value)
 {
 }
 
@@ -120,14 +121,15 @@ void Ishiko::Collections::ObservableVector<T>::Observers::remove(std::shared_ptr
 }
 
 template<class T>
-void Ishiko::Collections::ObservableVector<T>::Observers::notifyElementAdded(size_t pos, const T& value)
+void Ishiko::Collections::ObservableVector<T>::Observers::notifyElementAdded(const ObservableVector<T>& source,
+    size_t pos, const T& value)
 {
     for (std::pair<std::weak_ptr<ObservableVector<T>::Observer>, size_t>& o : m_observers)
     {
         std::shared_ptr<ObservableVector<T>::Observer> observer = o.first.lock();
         if (observer)
         {
-            observer->onElementAdded(pos, value);
+            observer->onElementAdded(source, pos, value);
         }
         else
         {
@@ -191,7 +193,7 @@ void Ishiko::Collections::ObservableVector<T>::pushBack(T&& value)
 {
     size_t pos = m_vector.size();
     m_vector.push_back(value);
-    m_observers.notifyElementAdded(pos, value);
+    m_observers.notifyElementAdded(*this, pos, value);
 }
 
 template<class T>
