@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018 Xavier Leclercq
+    Copyright (c) 2018-2019 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -33,19 +33,33 @@ public:
 
 private:
     static Ishiko::TestFramework::TestResult::EOutcome CreationTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome CreationTest2();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest1();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest2();
     static Ishiko::TestFramework::TestResult::EOutcome PushBackTest3();
+    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest4();
+    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest5();
+    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest6();
     static Ishiko::TestFramework::TestResult::EOutcome EraseTest1();
     static Ishiko::TestFramework::TestResult::EOutcome EraseTest2();
     static Ishiko::TestFramework::TestResult::EOutcome EraseTest3();
+    static Ishiko::TestFramework::TestResult::EOutcome EraseTest4();
+    static Ishiko::TestFramework::TestResult::EOutcome EraseTest5();
+    static Ishiko::TestFramework::TestResult::EOutcome EraseTest6();
     static Ishiko::TestFramework::TestResult::EOutcome TwoObserversTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome TwoObserversTest2();
     static Ishiko::TestFramework::TestResult::EOutcome TheSameObserverTwiceTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome TheSameObserverTwiceTest2();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest1();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest2();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest3();
+    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest4();
+    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest5();
+    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest6();
     static Ishiko::TestFramework::TestResult::EOutcome ObserverDeletionTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome ObserverDeletionTest2();
     static Ishiko::TestFramework::TestResult::EOutcome TwoVectorsTest1();
+    static Ishiko::TestFramework::TestResult::EOutcome TwoVectorsTest2();
 };
 
 class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer
@@ -54,6 +68,24 @@ public:
     void onElementAdded(const Ishiko::Collections::ObservableVector<int>& source, size_t pos,
         const int& value) override;
     void onElementsRemoved(const Ishiko::Collections::ObservableVector<int>& source, size_t first,
+        size_t last, const std::vector<int>& removedElements) override;
+
+    std::map<void*, std::vector<std::pair<size_t, int>>> m_additions;
+    std::map<void*, std::vector<std::tuple<size_t, size_t, std::vector<int>>>> m_deletions;
+};
+
+class DerivedIntVector : public Ishiko::Collections::ObservableVector<int, DerivedIntVector>
+{
+public:
+    static const bool sm_derived = true;
+};
+
+class DerivedIntVectorObserver : public DerivedIntVector::Observer
+{
+public:
+    void onElementAdded(const DerivedIntVector& source, size_t pos,
+        const int& value) override;
+    void onElementsRemoved(const DerivedIntVector& source, size_t first,
         size_t last, const std::vector<int>& removedElements) override;
 
     std::map<void*, std::vector<std::pair<size_t, int>>> m_additions;
