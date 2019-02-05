@@ -356,24 +356,21 @@ TestResult::EOutcome ObservableVectorTests::TwoObserversTest1()
     std::shared_ptr<IntVectorObserver> observer2 = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer2);
 
-    if (vector.observers().size() == 2)
+    vector.pushBack(123);
+    vector.pushBack(456);
+    vector.pushBack(789);
+    if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
     {
-        vector.pushBack(123);
-        vector.pushBack(456);
-        vector.pushBack(789);
-        if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
+        if ((observer1->m_additions[&vector].size() == 3) &&
+            (observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
+            (observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
+            (observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)) &&
+            (observer2->m_additions[&vector].size() == 3) &&
+            (observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
+            (observer2->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
+            (observer2->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
         {
-            if ((observer1->m_additions[&vector].size() == 3) &&
-                (observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-                (observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-                (observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)) &&
-                (observer2->m_additions[&vector].size() == 3) &&
-                (observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-                (observer2->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-                (observer2->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
-            {
-                result = TestResult::ePassed;
-            }
+            result = TestResult::ePassed;
         }
     }
 
@@ -391,24 +388,21 @@ TestResult::EOutcome ObservableVectorTests::TwoObserversTest2()
     std::shared_ptr<DerivedIntVectorObserver> observer2 = std::make_shared<DerivedIntVectorObserver>();
     vector.observers().add(observer2);
 
-    if (vector.observers().size() == 2)
+    vector.pushBack(123);
+    vector.pushBack(456);
+    vector.pushBack(789);
+    if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
     {
-        vector.pushBack(123);
-        vector.pushBack(456);
-        vector.pushBack(789);
-        if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
+        if ((observer1->m_additions[&vector].size() == 3) &&
+            (observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
+            (observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
+            (observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)) &&
+            (observer2->m_additions[&vector].size() == 3) &&
+            (observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
+            (observer2->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
+            (observer2->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
         {
-            if ((observer1->m_additions[&vector].size() == 3) &&
-                (observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-                (observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-                (observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)) &&
-                (observer2->m_additions[&vector].size() == 3) &&
-                (observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-                (observer2->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-                (observer2->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
-            {
-                result = TestResult::ePassed;
-            }
+            result = TestResult::ePassed;
         }
     }
 
@@ -425,20 +419,17 @@ TestResult::EOutcome ObservableVectorTests::TheSameObserverTwiceTest1()
     vector.observers().add(observer);
     vector.observers().add(observer);
 
-    if (vector.observers().size() == 1)
+    vector.pushBack(123);
+    vector.pushBack(456);
+    vector.pushBack(789);
+    if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
     {
-        vector.pushBack(123);
-        vector.pushBack(456);
-        vector.pushBack(789);
-        if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
+        if ((observer->m_additions[&vector].size() == 3) &&
+            (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
+            (observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
+            (observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
         {
-            if ((observer->m_additions[&vector].size() == 3) &&
-                (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-                (observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-                (observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
-            {
-                result = TestResult::ePassed;
-            }
+            result = TestResult::ePassed;
         }
     }
 
@@ -455,20 +446,17 @@ TestResult::EOutcome ObservableVectorTests::TheSameObserverTwiceTest2()
     vector.observers().add(observer);
     vector.observers().add(observer);
 
-    if (vector.observers().size() == 1)
+    vector.pushBack(123);
+    vector.pushBack(456);
+    vector.pushBack(789);
+    if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
     {
-        vector.pushBack(123);
-        vector.pushBack(456);
-        vector.pushBack(789);
-        if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
+        if ((observer->m_additions[&vector].size() == 3) &&
+            (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
+            (observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
+            (observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
         {
-            if ((observer->m_additions[&vector].size() == 3) &&
-                (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-                (observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-                (observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
-            {
-                result = TestResult::ePassed;
-            }
+            result = TestResult::ePassed;
         }
     }
 

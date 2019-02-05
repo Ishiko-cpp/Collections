@@ -55,8 +55,6 @@ public:
         void notifyElementsRemoved(const EventSource& source, size_t first, size_t last,
             const std::vector<T, Allocator>& removedElements);
 
-        size_t size();
-
     private:
         void removeDeletedObservers();
 
@@ -112,8 +110,6 @@ public:
         void notifyElementAdded(const ObservableVector<T, void, Allocator>& source, size_t pos, const T& value);
         void notifyElementsRemoved(const ObservableVector<T, void, Allocator>& source, size_t first, size_t last,
             const std::vector<T, Allocator>& removedElements);
-
-        size_t size();
 
     private:
         void removeDeletedObservers();
@@ -237,12 +233,6 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers
             removeDeletedObservers();
         }
     }
-}
-
-template<class T, class EventSource, class Allocator = std::allocator<T>>
-size_t Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers::size()
-{
-    return m_observers.size();
 }
 
 template<class T, class EventSource, class Allocator = std::allocator<T>>
@@ -451,12 +441,6 @@ void Ishiko::Collections::ObservableVector<T, void, Allocator>::Observers::notif
             removeDeletedObservers();
         }
     }
-}
-
-template<class T, class Allocator>
-size_t Ishiko::Collections::ObservableVector<T, void, Allocator>::Observers::size()
-{
-    return m_observers.size();
 }
 
 template<class T, class Allocator>
