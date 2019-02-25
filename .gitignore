@@ -8,4 +8,5 @@
 .vs/
 Debug/
 Release/
-Lib/
+/Lib/*
+!/Lib/README.md
