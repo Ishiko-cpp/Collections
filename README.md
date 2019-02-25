@@ -3,9 +3,29 @@
 A series of container classes. This is not a replacement for Boost or the STL, it only provides containers
 with features not available in either of them.
 
+# Contents
+
+- Include - Directory containing the public headers for the project.
+- Lib - Directory where the build process puts the compiled libraries.
+- Makefiles - The makefiles used to build the project
+- Source - The source code for the prokect.
+- Tests - The tests for the project.
+
+# Project Status
+
+This project is intended for use by its author only.
+
+# Usage
+
+No documentation available as of yet.
+
+# Support
+
+None.
+
 ## License
 
-Copyright (c) 2018 Xavier Leclercq
+Copyright (c) 2018-2019 Xavier Leclercq
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
