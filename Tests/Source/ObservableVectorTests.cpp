@@ -57,105 +57,75 @@ ObservableVectorTests::ObservableVectorTests(const TestNumber& number, const Tes
     append<HeapAllocationErrorsTest>("Two vectors sharing an observer test 2", TwoVectorsTest2);
 }
 
-TestResult::EOutcome ObservableVectorTests::CreationTest1()
+void ObservableVectorTests::CreationTest1(Test& test)
 {
     Ishiko::Collections::ObservableVector<int> vector;
-    if (vector.size() == 0)
-    {
-        return TestResult::ePassed;
-    }
-    else
-    {
-        return TestResult::eFailed;
-    }
+
+    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ObservableVectorTests::CreationTest2()
+void ObservableVectorTests::CreationTest2(Test& test)
 {
     DerivedIntVector vector;
-    if (vector.size() == 0)
-    {
-        return TestResult::ePassed;
-    }
-    else
-    {
-        return TestResult::eFailed;
-    }
+    
+    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ObservableVectorTests::PushBackTest1()
+void ObservableVectorTests::PushBackTest1(Test& test)
 {
     Ishiko::Collections::ObservableVector<int> vector;
     vector.pushBack(123);
-    if ((vector.size() == 1) && (vector[0] == 123))
-    {
-        return TestResult::ePassed;
-    }
-    else
-    {
-        return TestResult::eFailed;
-    }
+
+    ISHTF_FAIL_UNLESS(vector.size() == 1);
+    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ObservableVectorTests::PushBackTest2()
+void ObservableVectorTests::PushBackTest2(Test& test)
 {
     DerivedIntVector vector;
     vector.pushBack(123);
-    if ((vector.size() == 1) && (vector[0] == 123))
-    {
-        return TestResult::ePassed;
-    }
-    else
-    {
-        return TestResult::eFailed;
-    }
+    
+    ISHTF_FAIL_UNLESS(vector.size() == 1);
+    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ObservableVectorTests::PushBackTest3()
+void ObservableVectorTests::PushBackTest3(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Collections::ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
 
     vector.pushBack(123);
-    if ((vector.size() == 1) && (vector[0] == 123))
-    {
-        if ((observer->m_additions[&vector].size() == 1) &&
-            (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)))
-        {
-            result = TestResult::ePassed;
-        }
-    }
 
-    return result;
+    ISHTF_FAIL_UNLESS(vector.size() == 1);
+    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 1);
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ObservableVectorTests::PushBackTest4()
+void ObservableVectorTests::PushBackTest4(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     DerivedIntVector vector;
 
     std::shared_ptr<DerivedIntVectorObserver> observer = std::make_shared<DerivedIntVectorObserver>();
     vector.observers().add(observer);
 
     vector.pushBack(123);
-    if ((vector.size() == 1) && (vector[0] == 123))
-    {
-        if ((observer->m_additions[&vector].size() == 1) &&
-            (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)))
-        {
-            result = TestResult::ePassed;
-        }
-    }
-
-    return result;
+    
+    ISHTF_FAIL_UNLESS(vector.size() == 1);
+    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 1);
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_PASS();
 }
 
-TestResult::EOutcome ObservableVectorTests::PushBackTest5()
+void ObservableVectorTests::PushBackTest5(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -181,7 +151,7 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest5()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::PushBackTest6()
+void ObservableVectorTests::PushBackTest6(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -207,7 +177,7 @@ TestResult::EOutcome ObservableVectorTests::PushBackTest6()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::EraseTest1()
+void ObservableVectorTests::EraseTest1(Test& test)
 {
     Ishiko::Collections::ObservableVector<int> vector;
     vector.pushBack(123);
@@ -222,7 +192,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest1()
     }
 }
 
-TestResult::EOutcome ObservableVectorTests::EraseTest2()
+void ObservableVectorTests::EraseTest2(Test& test)
 {
     DerivedIntVector vector;
     vector.pushBack(123);
@@ -237,7 +207,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest2()
     }
 }
 
-TestResult::EOutcome ObservableVectorTests::EraseTest3()
+void ObservableVectorTests::EraseTest3(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -261,7 +231,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest3()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::EraseTest4()
+void ObservableVectorTests::EraseTest4(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -285,7 +255,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest4()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::EraseTest5()
+void ObservableVectorTests::EraseTest5(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -311,7 +281,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest5()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::EraseTest6()
+void ObservableVectorTests::EraseTest6(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -337,7 +307,7 @@ TestResult::EOutcome ObservableVectorTests::EraseTest6()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::TwoObserversTest1()
+void ObservableVectorTests::TwoObserversTest1(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -369,7 +339,7 @@ TestResult::EOutcome ObservableVectorTests::TwoObserversTest1()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::TwoObserversTest2()
+void ObservableVectorTests::TwoObserversTest2(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -401,7 +371,7 @@ TestResult::EOutcome ObservableVectorTests::TwoObserversTest2()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::TheSameObserverTwiceTest1()
+void ObservableVectorTests::TheSameObserverTwiceTest1(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -428,7 +398,7 @@ TestResult::EOutcome ObservableVectorTests::TheSameObserverTwiceTest1()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::TheSameObserverTwiceTest2()
+void ObservableVectorTests::TheSameObserverTwiceTest2(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -455,7 +425,7 @@ TestResult::EOutcome ObservableVectorTests::TheSameObserverTwiceTest2()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest1()
+void ObservableVectorTests::ObserverRemovalTest1(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -489,7 +459,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest1()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest2()
+void ObservableVectorTests::ObserverRemovalTest2(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -523,7 +493,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest2()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest3()
+void ObservableVectorTests::ObserverRemovalTest3(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -556,7 +526,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest3()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest4()
+void ObservableVectorTests::ObserverRemovalTest4(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -589,7 +559,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest4()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest5()
+void ObservableVectorTests::ObserverRemovalTest5(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -617,7 +587,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest5()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest6()
+void ObservableVectorTests::ObserverRemovalTest6(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -645,7 +615,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverRemovalTest6()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverDeletionTest1()
+void ObservableVectorTests::ObserverDeletionTest1(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -675,7 +645,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverDeletionTest1()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::ObserverDeletionTest2()
+void ObservableVectorTests::ObserverDeletionTest2(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -705,7 +675,7 @@ TestResult::EOutcome ObservableVectorTests::ObserverDeletionTest2()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::TwoVectorsTest1()
+void ObservableVectorTests::TwoVectorsTest1(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
@@ -733,7 +703,7 @@ TestResult::EOutcome ObservableVectorTests::TwoVectorsTest1()
     return result;
 }
 
-TestResult::EOutcome ObservableVectorTests::TwoVectorsTest2()
+void ObservableVectorTests::TwoVectorsTest2(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
