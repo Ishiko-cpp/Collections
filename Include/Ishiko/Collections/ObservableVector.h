@@ -313,7 +313,8 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     std::vector<T, Allocator> removedElements;
     removedElements.push_back(*pos);
     typename std::vector<T, Allocator>::iterator result =  m_vector.erase(pos);
-    m_observers.notifyElementsRemoved(*(static_cast<EventSource*>(this)), firstPos, firstPos + 1, removedElements);
+    // We use a static cast as this allows private derivation from the ObservableVector class
+    m_observers.notifyElementsRemoved(*(EventSource*)this), firstPos, firstPos + 1, removedElements);
     return result;
 }
 
@@ -326,7 +327,8 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     std::vector<T, Allocator> removedElements;
     removedElements.insert(removedElements.end(), first, last);
     typename std::vector<T, Allocator>::iterator result = m_vector.erase(first, last);
-    m_observers.notifyElementsRemoved(*(static_cast<EventSource*>(this)), firstPos, lastPos, removedElements);
+    // We use a static cast as this allows private derivation from the ObservableVector class
+    m_observers.notifyElementsRemoved(*(EventSource*)this), firstPos, lastPos, removedElements);
     return result;
 }
 
@@ -335,7 +337,8 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::pushBack(
 {
     size_t pos = m_vector.size();
     m_vector.push_back(value);
-    m_observers.notifyElementAdded(*(static_cast<EventSource*>(this)), pos, value);
+    // We use a static cast as this allows private derivation from the ObservableVector class
+    m_observers.notifyElementAdded(*(EventSource*)this), pos, value);
 }
 
 template<class T, class EventSource, class Allocator>
@@ -343,7 +346,8 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::pushBack(
 {
     size_t pos = m_vector.size();
     m_vector.push_back(value);
-    m_observers.notifyElementAdded(*(static_cast<EventSource*>(this)), pos, value);
+    // We use a static cast as this allows private derivation from the ObservableVector class
+    m_observers.notifyElementAdded(*(EventSource*)this), pos, value);
 }
 
 template<class T, class EventSource, class Allocator>
