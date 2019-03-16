@@ -26,40 +26,40 @@
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 #include "Ishiko/Collections/ObservableVector.h"
 
-class ObservableVectorTests
+class ObservableVectorTests : public Ishiko::Tests::TestSequence
 {
 public:
-    static void AddTests(Ishiko::TestFramework::TestHarness& theTestHarness);
+    ObservableVectorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
-    static Ishiko::TestFramework::TestResult::EOutcome CreationTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome CreationTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest3();
-    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest4();
-    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest5();
-    static Ishiko::TestFramework::TestResult::EOutcome PushBackTest6();
-    static Ishiko::TestFramework::TestResult::EOutcome EraseTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome EraseTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome EraseTest3();
-    static Ishiko::TestFramework::TestResult::EOutcome EraseTest4();
-    static Ishiko::TestFramework::TestResult::EOutcome EraseTest5();
-    static Ishiko::TestFramework::TestResult::EOutcome EraseTest6();
-    static Ishiko::TestFramework::TestResult::EOutcome TwoObserversTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome TwoObserversTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome TheSameObserverTwiceTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome TheSameObserverTwiceTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest3();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest4();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest5();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverRemovalTest6();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverDeletionTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome ObserverDeletionTest2();
-    static Ishiko::TestFramework::TestResult::EOutcome TwoVectorsTest1();
-    static Ishiko::TestFramework::TestResult::EOutcome TwoVectorsTest2();
+    static void CreationTest1(Ishiko::Tests::Test& test);
+    static void CreationTest2(Ishiko::Tests::Test& test);
+    static void PushBackTest1(Ishiko::Tests::Test& test);
+    static void PushBackTest2(Ishiko::Tests::Test& test);
+    static void PushBackTest3(Ishiko::Tests::Test& test);
+    static void PushBackTest4(Ishiko::Tests::Test& test);
+    static void PushBackTest5(Ishiko::Tests::Test& test);
+    static void PushBackTest6(Ishiko::Tests::Test& test);
+    static void EraseTest1(Ishiko::Tests::Test& test);
+    static void EraseTest2(Ishiko::Tests::Test& test);
+    static void EraseTest3(Ishiko::Tests::Test& test);
+    static void EraseTest4(Ishiko::Tests::Test& test);
+    static void EraseTest5(Ishiko::Tests::Test& test);
+    static void EraseTest6(Ishiko::Tests::Test& test);
+    static void TwoObserversTest1(Ishiko::Tests::Test& test);
+    static void TwoObserversTest2(Ishiko::Tests::Test& test);
+    static void TheSameObserverTwiceTest1(Ishiko::Tests::Test& test);
+    static void TheSameObserverTwiceTest2(Ishiko::Tests::Test& test);
+    static void ObserverRemovalTest1(Ishiko::Tests::Test& test);
+    static void ObserverRemovalTest2(Ishiko::Tests::Test& test);
+    static void ObserverRemovalTest3(Ishiko::Tests::Test& test);
+    static void ObserverRemovalTest4(Ishiko::Tests::Test& test);
+    static void ObserverRemovalTest5(Ishiko::Tests::Test& test);
+    static void ObserverRemovalTest6(Ishiko::Tests::Test& test);
+    static void ObserverDeletionTest1(Ishiko::Tests::Test& test);
+    static void ObserverDeletionTest2(Ishiko::Tests::Test& test);
+    static void TwoVectorsTest1(Ishiko::Tests::Test& test);
+    static void TwoVectorsTest2(Ishiko::Tests::Test& test);
 };
 
 class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer

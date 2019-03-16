@@ -22,47 +22,39 @@
 
 #include "ObservableVectorTests.h"
 
-using namespace Ishiko::TestFramework;
+using namespace Ishiko::Tests;
 
-void ObservableVectorTests::AddTests(TestHarness& theTestHarness)
+ObservableVectorTests::ObservableVectorTests(const TestNumber& number, const TestEnvironment& environment)
+    : TestSequence(number, "ObservableVector tests", environment)
 {
-    TestSequence& vectorTestSequence = theTestHarness.appendTestSequence("ObservableVector tests");
-
-    new HeapAllocationErrorsTest("Creation test 1", CreationTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("Creation test 2", CreationTest2, vectorTestSequence);
-
-    new HeapAllocationErrorsTest("pushBack test 1", PushBackTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("pushBack test 2", PushBackTest2, vectorTestSequence);
-    new HeapAllocationErrorsTest("pushBack test 3", PushBackTest3, vectorTestSequence);
-    new HeapAllocationErrorsTest("pushBack test 4", PushBackTest4, vectorTestSequence);
-    new HeapAllocationErrorsTest("pushBack test 5", PushBackTest5, vectorTestSequence);
-    new HeapAllocationErrorsTest("pushBack test 6", PushBackTest6, vectorTestSequence);
-
-    new HeapAllocationErrorsTest("erase test 1", EraseTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("erase test 2", EraseTest2, vectorTestSequence);
-    new HeapAllocationErrorsTest("erase test 3", EraseTest3, vectorTestSequence);
-    new HeapAllocationErrorsTest("erase test 4", EraseTest4, vectorTestSequence);
-    new HeapAllocationErrorsTest("erase test 5", EraseTest5, vectorTestSequence);
-    new HeapAllocationErrorsTest("erase test 6", EraseTest6, vectorTestSequence);
-
-    new HeapAllocationErrorsTest("Two observers test 1", TwoObserversTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("Two observers test 2", TwoObserversTest2, vectorTestSequence);
-
-    new HeapAllocationErrorsTest("The same observer twice test 1", TheSameObserverTwiceTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("The same observer twice test 2", TheSameObserverTwiceTest2, vectorTestSequence);
-
-    new HeapAllocationErrorsTest("Observer removal test 1", ObserverRemovalTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("Observer removal test 2", ObserverRemovalTest2, vectorTestSequence);
-    new HeapAllocationErrorsTest("Observer removal test 3", ObserverRemovalTest3, vectorTestSequence);
-    new HeapAllocationErrorsTest("Observer removal test 4", ObserverRemovalTest4, vectorTestSequence);
-    new HeapAllocationErrorsTest("Observer removal test 5", ObserverRemovalTest5, vectorTestSequence);
-    new HeapAllocationErrorsTest("Observer removal test 6", ObserverRemovalTest6, vectorTestSequence);
-
-    new HeapAllocationErrorsTest("Observer deletion test 1", ObserverDeletionTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("Observer deletion test 2", ObserverDeletionTest2, vectorTestSequence);
-
-    new HeapAllocationErrorsTest("Two vectors sharing an observer test 1", TwoVectorsTest1, vectorTestSequence);
-    new HeapAllocationErrorsTest("Two vectors sharing an observer test 2", TwoVectorsTest2, vectorTestSequence);
+    append<HeapAllocationErrorsTest>("Creation test 1", CreationTest1);
+    append<HeapAllocationErrorsTest>("Creation test 2", CreationTest2);
+    append<HeapAllocationErrorsTest>("pushBack test 1", PushBackTest1);
+    append<HeapAllocationErrorsTest>("pushBack test 2", PushBackTest2);
+    append<HeapAllocationErrorsTest>("pushBack test 3", PushBackTest3);
+    append<HeapAllocationErrorsTest>("pushBack test 4", PushBackTest4);
+    append<HeapAllocationErrorsTest>("pushBack test 5", PushBackTest5);
+    append<HeapAllocationErrorsTest>("pushBack test 6", PushBackTest6);
+    append<HeapAllocationErrorsTest>("erase test 1", EraseTest1);
+    append<HeapAllocationErrorsTest>("erase test 2", EraseTest2);
+    append<HeapAllocationErrorsTest>("erase test 3", EraseTest3);
+    append<HeapAllocationErrorsTest>("erase test 4", EraseTest4);
+    append<HeapAllocationErrorsTest>("erase test 5", EraseTest5);
+    append<HeapAllocationErrorsTest>("erase test 6", EraseTest6);
+    append<HeapAllocationErrorsTest>("Two observers test 1", TwoObserversTest1);
+    append<HeapAllocationErrorsTest>("Two observers test 2", TwoObserversTest2);
+    append<HeapAllocationErrorsTest>("The same observer twice test 1", TheSameObserverTwiceTest1);
+    append<HeapAllocationErrorsTest>("The same observer twice test 2", TheSameObserverTwiceTest2);
+    append<HeapAllocationErrorsTest>("Observer removal test 1", ObserverRemovalTest1);
+    append<HeapAllocationErrorsTest>("Observer removal test 2", ObserverRemovalTest2);
+    append<HeapAllocationErrorsTest>("Observer removal test 3", ObserverRemovalTest3);
+    append<HeapAllocationErrorsTest>("Observer removal test 4", ObserverRemovalTest4);
+    append<HeapAllocationErrorsTest>("Observer removal test 5", ObserverRemovalTest5);
+    append<HeapAllocationErrorsTest>("Observer removal test 6", ObserverRemovalTest6);
+    append<HeapAllocationErrorsTest>("Observer deletion test 1", ObserverDeletionTest1);
+    append<HeapAllocationErrorsTest>("Observer deletion test 2", ObserverDeletionTest2);
+    append<HeapAllocationErrorsTest>("Two vectors sharing an observer test 1", TwoVectorsTest1);
+    append<HeapAllocationErrorsTest>("Two vectors sharing an observer test 2", TwoVectorsTest2);
 }
 
 TestResult::EOutcome ObservableVectorTests::CreationTest1()
