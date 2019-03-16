@@ -146,19 +146,19 @@ private:
 }
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observer::onElementAdded(
     const EventSource& source, size_t pos, const T& value)
 {
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observer::onElementsRemoved(
     const EventSource& source, size_t first, size_t last, const std::vector<T, Allocator>& removedElements)
 {
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers::add(
     std::shared_ptr<Observer> observer)
 {
@@ -178,7 +178,7 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers
     }
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers::remove(
     std::shared_ptr<Observer> observer)
 {
@@ -198,7 +198,7 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers
     }
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers::notifyElementAdded(
     const EventSource& source, size_t pos, const T& value)
 {
@@ -216,7 +216,7 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers
     }
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers::notifyElementsRemoved(
     const EventSource& source, size_t first, size_t last,
     const std::vector<T, Allocator>& removedElements)
@@ -235,7 +235,7 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers
     }
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers::removeDeletedObservers()
 {
     auto it = std::remove_if(m_observers.begin(), m_observers.end(),
@@ -247,65 +247,65 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers
     m_observers.erase(it, m_observers.end());
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 T& Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::operator[](size_t pos)
 {
     return m_vector[pos];
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 const T& Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::operator[](size_t pos) const
 {
     return m_vector[pos];
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 T& Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::back()
 {
     return m_vector.back();
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 const T& Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::back() const
 {
     return m_vector.back();
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 typename std::vector<T, Allocator>::iterator
     Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::begin() noexcept
 {
     return m_vector.begin();
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 typename std::vector<T, Allocator>::const_iterator
     Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::begin() const noexcept
 {
     return m_vector.begin();
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 typename std::vector<T, Allocator>::iterator
     Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::end() noexcept
 {
     return m_vector.end();
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 typename std::vector<T, Allocator>::const_iterator
     Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::end() const noexcept
 {
     return m_vector.end();
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 size_t Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::size() const noexcept
 {
     return m_vector.size();
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::erase(
     typename std::vector<T, Allocator>::const_iterator pos)
 {
@@ -317,7 +317,7 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     return result;
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::erase(
     typename std::vector<T, Allocator>::const_iterator first, typename std::vector<T, Allocator>::const_iterator last)
 {
@@ -330,7 +330,7 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     return result;
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::pushBack(const T& value)
 {
     size_t pos = m_vector.size();
@@ -338,7 +338,7 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::pushBack(
     m_observers.notifyElementAdded(*(static_cast<EventSource*>(this)), pos, value);
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::pushBack(T&& value)
 {
     size_t pos = m_vector.size();
@@ -346,7 +346,7 @@ void Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::pushBack(
     m_observers.notifyElementAdded(*(static_cast<EventSource*>(this)), pos, value);
 }
 
-template<class T, class EventSource, class Allocator = std::allocator<T>>
+template<class T, class EventSource, class Allocator>
 typename Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::Observers&
     Ishiko::Collections::ObservableVector<T, EventSource, Allocator>::observers()
 {
