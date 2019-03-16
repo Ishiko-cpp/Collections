@@ -312,7 +312,7 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     size_t firstPos = pos - m_vector.cbegin();
     std::vector<T, Allocator> removedElements;
     removedElements.push_back(*pos);
-    std::vector<T, Allocator>::iterator result =  m_vector.erase(pos);
+    typename std::vector<T, Allocator>::iterator result =  m_vector.erase(pos);
     m_observers.notifyElementsRemoved(*(static_cast<EventSource*>(this)), firstPos, firstPos + 1, removedElements);
     return result;
 }
@@ -325,7 +325,7 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     size_t lastPos = last - m_vector.cbegin();
     std::vector<T, Allocator> removedElements;
     removedElements.insert(removedElements.end(), first, last);
-    std::vector<T, Allocator>::iterator result = m_vector.erase(first, last);
+    typename std::vector<T, Allocator>::iterator result = m_vector.erase(first, last);
     m_observers.notifyElementsRemoved(*(static_cast<EventSource*>(this)), firstPos, lastPos, removedElements);
     return result;
 }
@@ -520,7 +520,7 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     size_t firstPos = pos - m_vector.cbegin();
     std::vector<T, Allocator> removedElements;
     removedElements.push_back(*pos);
-    std::vector<T, Allocator>::iterator result = m_vector.erase(pos);
+    typename std::vector<T, Allocator>::iterator result = m_vector.erase(pos);
     m_observers.notifyElementsRemoved(*this, firstPos, firstPos + 1, removedElements);
     return result;
 }
@@ -533,7 +533,7 @@ typename std::vector<T, Allocator>::iterator Ishiko::Collections::ObservableVect
     size_t lastPos = last - m_vector.cbegin();
     std::vector<T, Allocator> removedElements;
     removedElements.insert(removedElements.end(), first, last);
-    std::vector<T, Allocator>::iterator result = m_vector.erase(first, last);
+    typename std::vector<T, Allocator>::iterator result = m_vector.erase(first, last);
     m_observers.notifyElementsRemoved(*this, firstPos, lastPos, removedElements);
     return result;
 }
