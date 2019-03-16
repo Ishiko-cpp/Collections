@@ -127,8 +127,6 @@ void ObservableVectorTests::PushBackTest4(Test& test)
 
 void ObservableVectorTests::PushBackTest5(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Collections::ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
@@ -137,24 +135,20 @@ void ObservableVectorTests::PushBackTest5(Test& test)
     vector.pushBack(123);
     vector.pushBack(456);
     vector.pushBack(789);
-    if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
-    {
-        if ((observer->m_additions[&vector].size() == 3) &&
-            (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-            (observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-            (observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
-        {
-            result = TestResult::ePassed;
-        }
-    }
 
-    return result;
+    ISHTF_FAIL_UNLESS(vector.size() == 3);
+    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_FAIL_UNLESS(vector[1] == 456);
+    ISHTF_FAIL_UNLESS(vector[2] == 789);
+    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 3);
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::PushBackTest6(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     DerivedIntVector vector;
 
     std::shared_ptr<DerivedIntVectorObserver> observer = std::make_shared<DerivedIntVectorObserver>();
@@ -163,18 +157,16 @@ void ObservableVectorTests::PushBackTest6(Test& test)
     vector.pushBack(123);
     vector.pushBack(456);
     vector.pushBack(789);
-    if ((vector.size() == 3) && (vector[0] == 123) && (vector[1] == 456) && (vector[2] == 789))
-    {
-        if ((observer->m_additions[&vector].size() == 3) &&
-            (observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)) &&
-            (observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)) &&
-            (observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)))
-        {
-            result = TestResult::ePassed;
-        }
-    }
-
-    return result;
+    
+    ISHTF_FAIL_UNLESS(vector.size() == 3);
+    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_FAIL_UNLESS(vector[1] == 456);
+    ISHTF_FAIL_UNLESS(vector[2] == 789);
+    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 3);
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::EraseTest1(Test& test)
@@ -182,14 +174,9 @@ void ObservableVectorTests::EraseTest1(Test& test)
     Ishiko::Collections::ObservableVector<int> vector;
     vector.pushBack(123);
     vector.erase(vector.begin());
-    if (vector.size() == 0)
-    {
-        return TestResult::ePassed;
-    }
-    else
-    {
-        return TestResult::eFailed;
-    }
+
+    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::EraseTest2(Test& test)
@@ -197,20 +184,13 @@ void ObservableVectorTests::EraseTest2(Test& test)
     DerivedIntVector vector;
     vector.pushBack(123);
     vector.erase(vector.begin());
-    if (vector.size() == 0)
-    {
-        return TestResult::ePassed;
-    }
-    else
-    {
-        return TestResult::eFailed;
-    }
+    
+    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::EraseTest3(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Collections::ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
@@ -219,22 +199,15 @@ void ObservableVectorTests::EraseTest3(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    if (vector.size() == 0)
-    {
-        if ((observer->m_deletions.size() == 1) &&
-            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })))
-        {
-            result = TestResult::ePassed;
-        }
-    }
-    
-    return result;
+    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
+    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] ==
+        std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::EraseTest4(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     DerivedIntVector vector;
 
     std::shared_ptr<DerivedIntVectorObserver> observer = std::make_shared<DerivedIntVectorObserver>();
@@ -243,22 +216,15 @@ void ObservableVectorTests::EraseTest4(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    if (vector.size() == 0)
-    {
-        if ((observer->m_deletions.size() == 1) &&
-            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })))
-        {
-            result = TestResult::ePassed;
-        }
-    }
-
-    return result;
+    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
+    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] ==
+        std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::EraseTest5(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     Ishiko::Collections::ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
@@ -269,22 +235,14 @@ void ObservableVectorTests::EraseTest5(Test& test)
     vector.pushBack(789);
     vector.erase(vector.begin() + 1, vector.end());
 
-    if (vector.size() == 1)
-    {
-        if ((observer->m_deletions.size() == 1) &&
-            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })))
-        {
-            result = TestResult::ePassed;
-        }
-    }
-
-    return result;
+    ISHTF_FAIL_UNLESS(vector.size() == 1);
+    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
+    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::EraseTest6(Test& test)
 {
-    TestResult::EOutcome result = TestResult::eFailed;
-
     DerivedIntVector vector;
 
     std::shared_ptr<DerivedIntVectorObserver> observer = std::make_shared<DerivedIntVectorObserver>();
@@ -295,16 +253,10 @@ void ObservableVectorTests::EraseTest6(Test& test)
     vector.pushBack(789);
     vector.erase(vector.begin() + 1, vector.end());
 
-    if (vector.size() == 1)
-    {
-        if ((observer->m_deletions.size() == 1) &&
-            (observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })))
-        {
-            result = TestResult::ePassed;
-        }
-    }
-
-    return result;
+    ISHTF_FAIL_UNLESS(vector.size() == 1);
+    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
+    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
+    ISHTF_PASS();
 }
 
 void ObservableVectorTests::TwoObserversTest1(Test& test)
