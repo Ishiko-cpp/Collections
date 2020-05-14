@@ -1,20 +1,20 @@
-setting ISHIKO_COLLECTIONS_ROOT
+setting ISHIKO_CPP_COLLECTIONS_ROOT
 {
     help = "Path to the Ishiko Collections installation";
-    default = '$(ISHIKO)/Collections';
+    default = '$(ISHIKO_CPP)/Collections';
 }
 
 template IshikoCollections
 {
-    includedirs += $(ISHIKO_COLLECTIONS_ROOT)/Include;
+    includedirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Include;
 
     if ($(toolset) == gnu)
     {
-       libdirs += $(ISHIKO_COLLECTIONS_ROOT)/Lib;
+       libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_COLLECTIONS_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Lib/$(arch);
     }
 }
