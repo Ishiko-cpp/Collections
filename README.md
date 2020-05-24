@@ -13,6 +13,8 @@ with features not available in either of them.
 
 # Project Status
 
+[![Ishiko-cpp](https://circleci.com/gh/Ishiko-cpp/Collections.svg?style=shield)](https://circleci.com/gh/Ishiko-cpp/Collections)
+
 This project is intended for use by its author only.
 
 # Usage
@@ -25,7 +27,7 @@ None.
 
 ## License
 
-Copyright (c) 2018-2019 Xavier Leclercq
+Copyright (c) 2018-2020 Xavier Leclercq
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
