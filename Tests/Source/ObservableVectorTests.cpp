@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2019 Xavier Leclercq
+    Copyright (c) 2018-2020 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -61,7 +61,7 @@ void ObservableVectorTests::CreationTest1(Test& test)
 {
     Ishiko::Collections::ObservableVector<int> vector;
 
-    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_FAIL_IF_NEQ(vector.size(), 0);
     ISHTF_PASS();
 }
 
@@ -69,7 +69,7 @@ void ObservableVectorTests::CreationTest2(Test& test)
 {
     DerivedIntVector vector;
     
-    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_FAIL_IF_NEQ(vector.size(), 0);
     ISHTF_PASS();
 }
 
@@ -78,8 +78,8 @@ void ObservableVectorTests::PushBackTest1(Test& test)
     Ishiko::Collections::ObservableVector<int> vector;
     vector.pushBack(123);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 1);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_FAIL_IF_NEQ(vector.size(), 1);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
     ISHTF_PASS();
 }
 
@@ -88,8 +88,8 @@ void ObservableVectorTests::PushBackTest2(Test& test)
     DerivedIntVector vector;
     vector.pushBack(123);
     
-    ISHTF_FAIL_UNLESS(vector.size() == 1);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
+    ISHTF_FAIL_IF_NEQ(vector.size(), 1);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
     ISHTF_PASS();
 }
 
@@ -102,10 +102,10 @@ void ObservableVectorTests::PushBackTest3(Test& test)
 
     vector.pushBack(123);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 1);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 1);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -118,10 +118,10 @@ void ObservableVectorTests::PushBackTest4(Test& test)
 
     vector.pushBack(123);
     
-    ISHTF_FAIL_UNLESS(vector.size() == 1);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 1);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -136,14 +136,14 @@ void ObservableVectorTests::PushBackTest5(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
     ISHTF_PASS();
 }
 
@@ -158,14 +158,14 @@ void ObservableVectorTests::PushBackTest6(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
     
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
     ISHTF_PASS();
 }
 
@@ -175,7 +175,7 @@ void ObservableVectorTests::EraseTest1(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_FAIL_IF_NEQ(vector.size(), 0);
     ISHTF_PASS();
 }
 
@@ -185,7 +185,7 @@ void ObservableVectorTests::EraseTest2(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
     
-    ISHTF_FAIL_UNLESS(vector.size() == 0);
+    ISHTF_FAIL_IF_NEQ(vector.size(), 0);
     ISHTF_PASS();
 }
 
@@ -199,10 +199,10 @@ void ObservableVectorTests::EraseTest3(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    ISHTF_FAIL_UNLESS(vector.size() == 0);
-    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] ==
-        std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 0);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+        (std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
     ISHTF_PASS();
 }
 
@@ -216,10 +216,10 @@ void ObservableVectorTests::EraseTest4(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    ISHTF_FAIL_UNLESS(vector.size() == 0);
-    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] ==
-        std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 0);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+        (std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
     ISHTF_PASS();
 }
 
@@ -235,9 +235,10 @@ void ObservableVectorTests::EraseTest5(Test& test)
     vector.pushBack(789);
     vector.erase(vector.begin() + 1, vector.end());
 
-    ISHTF_FAIL_UNLESS(vector.size() == 1);
-    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+        (std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
     ISHTF_PASS();
 }
 
@@ -253,9 +254,10 @@ void ObservableVectorTests::EraseTest6(Test& test)
     vector.pushBack(789);
     vector.erase(vector.begin() + 1, vector.end());
 
-    ISHTF_FAIL_UNLESS(vector.size() == 1);
-    ISHTF_FAIL_UNLESS(observer->m_deletions.size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_deletions[&vector][0] == std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+        (std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
     ISHTF_PASS();
 }
 
@@ -272,18 +274,18 @@ void ObservableVectorTests::TwoObserversTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer1->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
-    ISHTF_FAIL_UNLESS(observer2->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
     ISHTF_PASS();
 }
 
@@ -300,18 +302,18 @@ void ObservableVectorTests::TwoObserversTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer1->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
-    ISHTF_FAIL_UNLESS(observer2->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
     ISHTF_PASS();
 }
 
@@ -327,14 +329,14 @@ void ObservableVectorTests::TheSameObserverTwiceTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
     ISHTF_PASS();
 }
 
@@ -350,14 +352,14 @@ void ObservableVectorTests::TheSameObserverTwiceTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
     
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
     ISHTF_PASS();
 }
 
@@ -377,16 +379,16 @@ void ObservableVectorTests::ObserverRemovalTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer1->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
-    ISHTF_FAIL_UNLESS(observer2->m_additions[&vector].size() == 1);
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -406,16 +408,16 @@ void ObservableVectorTests::ObserverRemovalTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer1->m_additions[&vector].size() == 3);
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
-    ISHTF_FAIL_UNLESS((observer1->m_additions[&vector][2] == std::pair<size_t, int>(2, 789)));
-    ISHTF_FAIL_UNLESS(observer2->m_additions[&vector].size() == 1);
-    ISHTF_FAIL_UNLESS((observer2->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -437,13 +439,13 @@ void ObservableVectorTests::ObserverRemovalTest3(Test& test)
 
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 2);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 2);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
     ISHTF_PASS();
 }
 
@@ -465,13 +467,13 @@ void ObservableVectorTests::ObserverRemovalTest4(Test& test)
 
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 2);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][1] == std::pair<size_t, int>(1, 456)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 2);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
     ISHTF_PASS();
 }
 
@@ -489,11 +491,11 @@ void ObservableVectorTests::ObserverRemovalTest5(Test& test)
 
     vector.pushBack(456);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 2);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 2);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -511,11 +513,11 @@ void ObservableVectorTests::ObserverRemovalTest6(Test& test)
 
     vector.pushBack(456);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 2);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector][0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 2);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -535,12 +537,12 @@ void ObservableVectorTests::ObserverDeletionTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(additions.size() == 1);
-    ISHTF_FAIL_UNLESS((additions[0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(additions.size(), 1);
+    ISHTF_FAIL_IF_NEQ(additions[0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -560,12 +562,12 @@ void ObservableVectorTests::ObserverDeletionTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHTF_FAIL_UNLESS(vector.size() == 3);
-    ISHTF_FAIL_UNLESS(vector[0] == 123);
-    ISHTF_FAIL_UNLESS(vector[1] == 456);
-    ISHTF_FAIL_UNLESS(vector[2] == 789);
-    ISHTF_FAIL_UNLESS(additions.size() == 1);
-    ISHTF_FAIL_UNLESS((additions[0] == std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(vector.size(), 3);
+    ISHTF_FAIL_IF_NEQ(vector[0], 123);
+    ISHTF_FAIL_IF_NEQ(vector[1], 456);
+    ISHTF_FAIL_IF_NEQ(vector[2], 789);
+    ISHTF_FAIL_IF_NEQ(additions.size(), 1);
+    ISHTF_FAIL_IF_NEQ(additions[0], (std::pair<size_t, int>(0, 123)));
     ISHTF_PASS();
 }
 
@@ -581,12 +583,12 @@ void ObservableVectorTests::TwoVectorsTest1(Test& test)
     vector1.pushBack(123);
     vector2.pushBack(456);
 
-    ISHTF_FAIL_UNLESS(vector1.size() == 1);
-    ISHTF_FAIL_UNLESS(vector1[0] == 123);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector1].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector1][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector2].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector2][0] == std::pair<size_t, int>(0, 456)));
+    ISHTF_FAIL_IF_NEQ(vector1.size(), 1);
+    ISHTF_FAIL_IF_NEQ(vector1[0], 123);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector1].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector1][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector2].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector2][0], (std::pair<size_t, int>(0, 456)));
     ISHTF_PASS();
 }
 
@@ -602,12 +604,12 @@ void ObservableVectorTests::TwoVectorsTest2(Test& test)
     vector1.pushBack(123);
     vector2.pushBack(456);
 
-    ISHTF_FAIL_UNLESS(vector1.size() == 1);
-    ISHTF_FAIL_UNLESS(vector1[0] == 123);
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector1].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector1][0] == std::pair<size_t, int>(0, 123)));
-    ISHTF_FAIL_UNLESS(observer->m_additions[&vector2].size() == 1);
-    ISHTF_FAIL_UNLESS((observer->m_additions[&vector2][0] == std::pair<size_t, int>(0, 456)));
+    ISHTF_FAIL_IF_NEQ(vector1.size(), 1);
+    ISHTF_FAIL_IF_NEQ(vector1[0], 123);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector1].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector1][0], (std::pair<size_t, int>(0, 123)));
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector2].size(), 1);
+    ISHTF_FAIL_IF_NEQ(observer->m_additions[&vector2][0], (std::pair<size_t, int>(0, 456)));
     ISHTF_PASS();
 }
 
