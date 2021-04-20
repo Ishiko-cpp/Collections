@@ -1,34 +1,19 @@
 /*
-    Copyright (c) 2018-2020 Xavier Leclercq
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the "Software"),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-    IN THE SOFTWARE.
+    Copyright (c) 2018-2021 Xavier Leclercq
+    Released under the MIT License
+    See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
 #include "ObservableVectorTests.h"
 
+using namespace Ishiko::Collections;
 using namespace Ishiko::Tests;
 
 ObservableVectorTests::ObservableVectorTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "ObservableVector tests", environment)
 {
-    append<HeapAllocationErrorsTest>("Creation test 1", CreationTest1);
-    append<HeapAllocationErrorsTest>("Creation test 2", CreationTest2);
+    append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("pushBack test 1", PushBackTest1);
     append<HeapAllocationErrorsTest>("pushBack test 2", PushBackTest2);
     append<HeapAllocationErrorsTest>("pushBack test 3", PushBackTest3);
@@ -57,15 +42,15 @@ ObservableVectorTests::ObservableVectorTests(const TestNumber& number, const Tes
     append<HeapAllocationErrorsTest>("Two vectors sharing an observer test 2", TwoVectorsTest2);
 }
 
-void ObservableVectorTests::CreationTest1(Test& test)
+void ObservableVectorTests::ConstructorTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     ISHTF_FAIL_IF_NEQ(vector.size(), 0);
     ISHTF_PASS();
 }
 
-void ObservableVectorTests::CreationTest2(Test& test)
+void ObservableVectorTests::ConstructorTest2(Test& test)
 {
     DerivedIntVector vector;
     
@@ -75,7 +60,7 @@ void ObservableVectorTests::CreationTest2(Test& test)
 
 void ObservableVectorTests::PushBackTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
     vector.pushBack(123);
 
     ISHTF_FAIL_IF_NEQ(vector.size(), 1);
@@ -95,7 +80,7 @@ void ObservableVectorTests::PushBackTest2(Test& test)
 
 void ObservableVectorTests::PushBackTest3(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -127,7 +112,7 @@ void ObservableVectorTests::PushBackTest4(Test& test)
 
 void ObservableVectorTests::PushBackTest5(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -171,7 +156,7 @@ void ObservableVectorTests::PushBackTest6(Test& test)
 
 void ObservableVectorTests::EraseTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
     vector.pushBack(123);
     vector.erase(vector.begin());
 
@@ -191,7 +176,7 @@ void ObservableVectorTests::EraseTest2(Test& test)
 
 void ObservableVectorTests::EraseTest3(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -225,7 +210,7 @@ void ObservableVectorTests::EraseTest4(Test& test)
 
 void ObservableVectorTests::EraseTest5(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -263,7 +248,7 @@ void ObservableVectorTests::EraseTest6(Test& test)
 
 void ObservableVectorTests::TwoObserversTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer1 = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer1);
@@ -319,7 +304,7 @@ void ObservableVectorTests::TwoObserversTest2(Test& test)
 
 void ObservableVectorTests::TheSameObserverTwiceTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -365,7 +350,7 @@ void ObservableVectorTests::TheSameObserverTwiceTest2(Test& test)
 
 void ObservableVectorTests::ObserverRemovalTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer1 = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer1);
@@ -423,7 +408,7 @@ void ObservableVectorTests::ObserverRemovalTest2(Test& test)
 
 void ObservableVectorTests::ObserverRemovalTest3(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -479,7 +464,7 @@ void ObservableVectorTests::ObserverRemovalTest4(Test& test)
 
 void ObservableVectorTests::ObserverRemovalTest5(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -523,7 +508,7 @@ void ObservableVectorTests::ObserverRemovalTest6(Test& test)
 
 void ObservableVectorTests::ObserverDeletionTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector;
+    ObservableVector<int> vector;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector.observers().add(observer);
@@ -573,8 +558,8 @@ void ObservableVectorTests::ObserverDeletionTest2(Test& test)
 
 void ObservableVectorTests::TwoVectorsTest1(Test& test)
 {
-    Ishiko::Collections::ObservableVector<int> vector1;
-    Ishiko::Collections::ObservableVector<int> vector2;
+    ObservableVector<int> vector1;
+    ObservableVector<int> vector2;
 
     std::shared_ptr<IntVectorObserver> observer = std::make_shared<IntVectorObserver>();
     vector1.observers().add(observer);
@@ -613,13 +598,13 @@ void ObservableVectorTests::TwoVectorsTest2(Test& test)
     ISHTF_PASS();
 }
 
-void IntVectorObserver::onElementAdded(const Ishiko::Collections::ObservableVector<int>& source, size_t pos,
+void IntVectorObserver::onElementAdded(const ObservableVector<int>& source, size_t pos,
     const int& value)
 {
     m_additions[(void*)&source].push_back(std::pair<size_t, int>(pos, value));
 }
 
-void IntVectorObserver::onElementsRemoved(const Ishiko::Collections::ObservableVector<int>& source, size_t first,
+void IntVectorObserver::onElementsRemoved(const ObservableVector<int>& source, size_t first,
     size_t last, const std::vector<int>& removedElements)
 {
     m_deletions[(void*)&source].push_back(std::tuple<size_t, size_t, std::vector<int>>(first, last, removedElements));
