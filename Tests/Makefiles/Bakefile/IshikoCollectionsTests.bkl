@@ -1,4 +1,4 @@
-import ../../../Include/Ishiko/IshikoCollections.bkl;
+import ../../../Include/Ishiko/Collections.bkl;
 ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/TestFramework/Include/Ishiko/TestFramework/TestFrameworkCore.bkl;
 
@@ -21,12 +21,14 @@ program IshikoCollectionsTests : IshikoCollections, IshikoTestFrameworkCore
 
     headers
     {
+        ../../Source/Vector2DTests.h
         ../../Source/ObservableVectorTests.h
     }
 
     sources
     {
         ../../Source/main.cpp
+        ../../Source/Vector2DTests.cpp
         ../../Source/ObservableVectorTests.cpp
     }
 }
