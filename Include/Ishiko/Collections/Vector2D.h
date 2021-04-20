@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_COLLECTIONS_VECTOR2D_H_
 #define _ISHIKO_COLLECTIONS_VECTOR2D_H_
 
+#include <vector>
 #include <memory>
 
 namespace Ishiko
