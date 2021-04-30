@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_COLLECTIONS_H_
 #define _ISHIKO_COLLECTIONS_H_
 
-#include "Collections/KeyedHashMap.h"
+#include "Collections/KeyedHashSet.h"
 #include "Collections/ObservableVector.h"
 #include "Collections/Vector2D.h"
 

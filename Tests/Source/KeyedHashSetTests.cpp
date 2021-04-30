@@ -4,18 +4,18 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#include "KeyedHashMapTests.h"
-#include "Ishiko/Collections/KeyedHashMap.h"
+#include "KeyedHashSetTests.h"
+#include "Ishiko/Collections/KeyedHashSet.h"
 
 using namespace Ishiko::Collections;
 using namespace Ishiko::Tests;
 
-KeyedHashMapTests::KeyedHashMapTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "KeyedHashMap tests", environment)
+KeyedHashSetTests::KeyedHashSetTests(const TestNumber& number, const TestEnvironment& environment)
+    : TestSequence(number, "KeyedHashSet tests", environment)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
 }
 
-void KeyedHashMapTests::ConstructorTest1(Test& test)
+void KeyedHashSetTests::ConstructorTest1(Test& test)
 {
 }

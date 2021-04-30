@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_COLLECTIONS_KEYEDHASHMAP_H_
-#define _ISHIKO_COLLECTIONS_KEYEDHASHMAP_H_
+#ifndef _ISHIKO_COLLECTIONS_KEYEDHASHSET_H_
+#define _ISHIKO_COLLECTIONS_KEYEDHASHSET_H_
 
 namespace Ishiko
 {
