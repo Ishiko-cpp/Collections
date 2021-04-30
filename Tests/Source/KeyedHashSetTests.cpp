@@ -6,6 +6,7 @@
 
 #include "KeyedHashSetTests.h"
 #include "Ishiko/Collections/KeyedHashSet.h"
+#include <string>
 
 using namespace Ishiko::Collections;
 using namespace Ishiko::Tests;
@@ -18,4 +19,8 @@ KeyedHashSetTests::KeyedHashSetTests(const TestNumber& number, const TestEnviron
 
 void KeyedHashSetTests::ConstructorTest1(Test& test)
 {
+    KeyedHashSet<std::string> set;
+
+    ISHTF_FAIL_IF_NEQ(set.size(), 0);
+    ISHTF_PASS();
 }

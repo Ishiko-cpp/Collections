@@ -11,6 +11,19 @@ namespace Ishiko
 {
 namespace Collections
 {
+   
+template<class T>
+class KeyedHashSet
+{
+public:
+    size_t size() const noexcept;
+};
+
+template<class T>
+size_t KeyedHashSet<T>::size() const noexcept
+{
+    return 0;
+}
 
 }
 }
