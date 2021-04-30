@@ -151,7 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Collections.h" />
-    <ClInclude Include="..\..\Include\Ishiko\Collections\KeyedHashMap.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Collections\KeyedHashSet.h" />
     <ClInclude Include="..\..\Include\Ishiko\Collections\ObservableVector.h" />
     <ClInclude Include="..\..\Include\Ishiko\Collections\Vector2D.h" />
     <ClInclude Include="..\..\Include\Ishiko\Collections\linkoptions.h" />

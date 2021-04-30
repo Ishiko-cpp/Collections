@@ -17,7 +17,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\KeyedHashMapTests.h">
+    <ClInclude Include="..\..\Source\KeyedHashSetTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ObservableVectorTests.h">
@@ -31,7 +31,7 @@
     <ClCompile Include="..\..\Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\KeyedHashMapTests.cpp">
+    <ClCompile Include="..\..\Source\KeyedHashSetTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ObservableVectorTests.cpp">

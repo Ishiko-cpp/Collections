@@ -20,7 +20,7 @@
     <ClInclude Include="..\..\Include\Ishiko\Collections.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Collections\KeyedHashMap.h">
+    <ClInclude Include="..\..\Include\Ishiko\Collections\KeyedHashSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\Collections\ObservableVector.h">

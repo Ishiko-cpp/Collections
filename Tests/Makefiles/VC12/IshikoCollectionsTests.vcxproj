@@ -153,12 +153,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\main.cpp" />
-    <ClCompile Include="..\..\Source\KeyedHashMapTests.cpp" />
+    <ClCompile Include="..\..\Source\KeyedHashSetTests.cpp" />
     <ClCompile Include="..\..\Source\ObservableVectorTests.cpp" />
     <ClCompile Include="..\..\Source\Vector2DTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\KeyedHashMapTests.h" />
+    <ClInclude Include="..\..\Source\KeyedHashSetTests.h" />
     <ClInclude Include="..\..\Source\ObservableVectorTests.h" />
     <ClInclude Include="..\..\Source\Vector2DTests.h" />
   </ItemGroup>
