@@ -31,8 +31,9 @@ library IshikoCollections
     {
         ../../Include/Ishiko/Collections.h
 
-        ../../Include/Ishiko/Collections/linkoptions.h
-        ../../Include/Ishiko/Collections/Vector2D.h
+        ../../Include/Ishiko/Collections/KeyedHashMap.h
         ../../Include/Ishiko/Collections/ObservableVector.h
+        ../../Include/Ishiko/Collections/Vector2D.h
+        ../../Include/Ishiko/Collections/linkoptions.h
     }
 }

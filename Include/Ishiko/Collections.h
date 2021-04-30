@@ -7,7 +7,8 @@
 #ifndef _ISHIKO_COLLECTIONS_H_
 #define _ISHIKO_COLLECTIONS_H_
 
-#include "ObservableVector.h"
-#include "Vector2D.h"
+#include "Collections/KeyedHashMap.h"
+#include "Collections/ObservableVector.h"
+#include "Collections/Vector2D.h"
 
 #endif

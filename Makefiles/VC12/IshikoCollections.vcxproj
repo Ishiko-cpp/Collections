@@ -151,9 +151,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Collections.h" />
-    <ClInclude Include="..\..\Include\Ishiko\Collections\linkoptions.h" />
-    <ClInclude Include="..\..\Include\Ishiko\Collections\Vector2D.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Collections\KeyedHashMap.h" />
     <ClInclude Include="..\..\Include\Ishiko\Collections\ObservableVector.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Collections\Vector2D.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Collections\linkoptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

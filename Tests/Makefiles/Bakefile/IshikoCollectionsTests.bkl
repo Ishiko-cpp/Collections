@@ -21,14 +21,16 @@ program IshikoCollectionsTests : IshikoCollections, IshikoTestFrameworkCore
 
     headers
     {
-        ../../Source/Vector2DTests.h
+        ../../Source/KeyedHashMapTests.h
         ../../Source/ObservableVectorTests.h
+        ../../Source/Vector2DTests.h
     }
 
     sources
     {
         ../../Source/main.cpp
-        ../../Source/Vector2DTests.cpp
+        ../../Source/KeyedHashMapTests.cpp
         ../../Source/ObservableVectorTests.cpp
+        ../../Source/Vector2DTests.cpp
     }
 }

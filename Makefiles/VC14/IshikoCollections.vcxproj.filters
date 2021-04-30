@@ -20,13 +20,16 @@
     <ClInclude Include="..\..\Include\Ishiko\Collections.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Collections\linkoptions.h">
+    <ClInclude Include="..\..\Include\Ishiko\Collections\KeyedHashMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Ishiko\Collections\ObservableVector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\Collections\Vector2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Collections\ObservableVector.h">
+    <ClInclude Include="..\..\Include\Ishiko\Collections\linkoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

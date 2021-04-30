@@ -6,6 +6,7 @@
 
 #include "Vector2DTests.h"
 #include "ObservableVectorTests.h"
+#include "KeyedHashMapTests.h"
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
 
 using namespace Ishiko::Tests;
@@ -17,6 +18,7 @@ int main(int argc, char* argv[])
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<Vector2DTests>();
     theTests.append<ObservableVectorTests>();
+    theTests.append<KeyedHashMapTests>();
 
     return theTestHarness.run();
 }
