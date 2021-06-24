@@ -6,15 +6,15 @@ setting ISHIKO_CPP_COLLECTIONS_ROOT
 
 template IshikoCollections
 {
-    includedirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Include;
+    includedirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/include;
 
     if ($(toolset) == gnu)
     {
-       libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Lib;
+       libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/lib/$(arch);
     }
 }
