@@ -65,7 +65,7 @@ endif
 # 
 
 # Path to the Ishiko Collections installation
-ISHIKO_CPP_COLLECTIONS_ROOT ?= $(ISHIKO_CPP)/Collections
+ISHIKO_CPP_COLLECTIONS_ROOT ?= $(ISHIKO_CPP)/collections
 # Path to the Ishiko Errors installation
 ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/errors
 # Path to the Ishiko Platform installation
