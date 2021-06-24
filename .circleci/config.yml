@@ -20,13 +20,13 @@ jobs:
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git && cd errors/build/GNUmakefile && make
       - run:
           name: "Install test dependency: Ishiko/C++ Text"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd errors/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/GNUmakefile && make
       - run:
           name: "Install test dependency: Ishiko/C++ Process"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/process.git && cd errors/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/process.git && cd process/build/GNUmakefile && make
       - run:
           name: "Install test dependency: Ishiko/C++ Tests"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/tests.git && cd errors/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/tests.git && cd tests/core/build/GNUmakefile && make
       - run:
           name: Test build
           command: cd /projects/ishiko/cpp/collections/Tests/Makefiles/GNUmakefile && make
