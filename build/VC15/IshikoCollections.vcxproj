@@ -69,17 +69,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>IshikoCollections-d</TargetName>
-    <OutDir>..\Bakefile\..\..\Lib\$(Platform)\</OutDir>
+    <OutDir>..\Bakefile\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>IshikoCollections-d</TargetName>
-    <OutDir>..\Bakefile\..\..\Lib\$(Platform)\</OutDir>
+    <OutDir>..\Bakefile\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\Bakefile\..\..\Lib\$(Platform)\</OutDir>
+    <OutDir>..\Bakefile\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\Bakefile\..\..\Lib\$(Platform)\</OutDir>
+    <OutDir>..\Bakefile\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,7 +88,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\Include\Ishiko\Collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Collections</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\Include\Ishiko\Collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Collections</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\Include\Ishiko\Collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Collections</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>..\..\Include\Ishiko\Collections</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include\Ishiko\Collections</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -150,10 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\Ishiko\Collections.h" />
-    <ClInclude Include="..\..\Include\Ishiko\Collections\linkoptions.h" />
-    <ClInclude Include="..\..\Include\Ishiko\Collections\Vector2D.h" />
-    <ClInclude Include="..\..\Include\Ishiko\Collections\ObservableVector.h" />
+    <ClInclude Include="..\..\include\Ishiko\Collections.h" />
+    <ClInclude Include="..\..\include\Ishiko\Collections\linkoptions.h" />
+    <ClInclude Include="..\..\include\Ishiko\Collections\Vector2D.h" />
+    <ClInclude Include="..\..\include\Ishiko\Collections\ObservableVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

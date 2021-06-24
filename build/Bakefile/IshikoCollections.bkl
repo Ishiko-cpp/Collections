@@ -9,17 +9,17 @@ library IshikoCollections
 {
     archs = x86 x86_64;
 
-    includedirs += ../../Include/Ishiko/Collections;
+    includedirs += ../../include/Ishiko/Collections;
     
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        outputdir = ../../Lib;
+        outputdir = ../../lib;
     }
 
     if ($(toolset) != gnu)
     {
-        outputdir = ../../Lib/$(arch);
+        outputdir = ../../lib/$(arch);
     }
 
     if ($(config) == Debug)
@@ -29,10 +29,10 @@ library IshikoCollections
 
     headers
     {
-        ../../Include/Ishiko/Collections.h
+        ../../include/Ishiko/Collections.h
 
-        ../../Include/Ishiko/Collections/linkoptions.h
-        ../../Include/Ishiko/Collections/Vector2D.h
-        ../../Include/Ishiko/Collections/ObservableVector.h
+        ../../include/Ishiko/Collections/linkoptions.h
+        ../../include/Ishiko/Collections/Vector2D.h
+        ../../include/Ishiko/Collections/ObservableVector.h
     }
 }
