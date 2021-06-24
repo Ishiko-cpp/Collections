@@ -10,11 +10,11 @@ template IshikoCollections
 
     if ($(toolset) == gnu)
     {
-       libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Lib;
+       libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/lib/$(arch);
     }
 }
