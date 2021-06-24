@@ -5,9 +5,9 @@ with features not available in either of them.
 
 # Contents
 
-- Include - Directory containing the public headers for the project.
-- Lib - Directory where the build process puts the compiled libraries.
-- Makefiles - The makefiles used to build the project
+- build - The makefiles used to build the project
+- include - Directory containing the public headers for the project.
+- lib - Directory where the build process puts the compiled libraries.
 - Source - The source code for the prokect.
 - Tests - The tests for the project.
 
