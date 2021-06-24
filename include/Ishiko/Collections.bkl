@@ -6,7 +6,7 @@ setting ISHIKO_CPP_COLLECTIONS_ROOT
 
 template IshikoCollections
 {
-    includedirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/Include;
+    includedirs += $(ISHIKO_CPP_COLLECTIONS_ROOT)/include;
 
     if ($(toolset) == gnu)
     {
