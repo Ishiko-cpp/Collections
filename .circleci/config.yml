@@ -11,7 +11,7 @@ jobs:
           path: /projects/ishiko/cpp/collections
       - run:
           name: Build
-          command: cd /projects/ishiko/cpp/collections/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/collections/build/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Platform"
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/platform.git && cd platform/build/GNUmakefile && make
