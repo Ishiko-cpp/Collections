@@ -45,13 +45,13 @@ _false :=
 _not    = $(if $(1),$(_false),$(_true_))
 _equal  = $(and $(findstring $(1),$(2)),$(findstring $(2),$(1)))
 
-all: ../Bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoCollections-d,IshikoCollections).a
+all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoCollections-d,IshikoCollections).a
 
-../Bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoCollections-d,IshikoCollections).a:
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoCollections-d,IshikoCollections).a:
 	$(AR) rc $@ 
 	$(RANLIB) $@
 
 clean:
-	rm -f ../Bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoCollections-d,IshikoCollections).a
+	rm -f ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoCollections-d,IshikoCollections).a
 
 .PHONY: all clean
