@@ -8,7 +8,7 @@
 #define _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
 
 #include "Ishiko/Collections/ObservableVector.h"
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Tests/Core.h>
 
 class ObservableVectorTests : public Ishiko::Tests::TestSequence
 {
