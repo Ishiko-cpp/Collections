@@ -1,22 +1,22 @@
 import ../../../Include/Ishiko/Collections.bkl;
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/tests/include/Ishiko/TestFramework/TestFrameworkCore.bkl;
+import $(ishikopath)/tests/include/Ishiko/Tests/Core.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
-gnu.makefile = ../GNUmakefile/GNUmakefile;
-vs2017.solutionfile = ../VC15/IshikoCollectionsTests.sln;
-vs2015.solutionfile = ../VC14/IshikoCollectionsTests.sln;
-vs2013.solutionfile = ../VC12/IshikoCollectionsTests.sln;
+gnu.makefile = ../gnumake/GNUmakefile;
+vs2017.solutionfile = ../vc15/IshikoCollectionsTests.sln;
+vs2015.solutionfile = ../vc14/IshikoCollectionsTests.sln;
+vs2013.solutionfile = ../vc12/IshikoCollectionsTests.sln;
 
-program IshikoCollectionsTests : IshikoCollections, IshikoTestFrameworkCore
+program IshikoCollectionsTests : IshikoCollections, IshikoTestsCore
 {
     archs = x86 x86_64;
 
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += IshikoCollections IshikoTestFrameworkCore IshikoProcess IshikoErrors boost_filesystem boost_system;
+        libs += IshikoCollections IshikoTestsCore IshikoProcess IshikoErrors boost_filesystem boost_system;
     }
 
     headers
