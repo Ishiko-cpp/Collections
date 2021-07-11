@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_COLLECTIONS_TESTS_VECTOR2DTESTS_H_
 #define _ISHIKO_COLLECTIONS_TESTS_VECTOR2DTESTS_H_
 
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Tests/Core.h>
 
 class Vector2DTests : public Ishiko::Tests::TestSequence
 {
