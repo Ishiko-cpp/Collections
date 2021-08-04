@@ -17,21 +17,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Vector2DTests.h">
+    <ClInclude Include="..\..\src\Vector2DTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ObservableVectorTests.h">
+    <ClInclude Include="..\..\src\ObservableVectorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\main.cpp">
+    <ClCompile Include="..\..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Vector2DTests.cpp">
+    <ClCompile Include="..\..\src\Vector2DTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ObservableVectorTests.cpp">
+    <ClCompile Include="..\..\src\ObservableVectorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
