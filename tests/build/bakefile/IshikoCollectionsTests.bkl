@@ -22,14 +22,14 @@ program IshikoCollectionsTests : IshikoCollections, IshikoTestsCore
 
     headers
     {
-        ../../Source/Vector2DTests.h
-        ../../Source/ObservableVectorTests.h
+        ../../src/Vector2DTests.h
+        ../../src/ObservableVectorTests.h
     }
 
     sources
     {
-        ../../Source/main.cpp
-        ../../Source/Vector2DTests.cpp
-        ../../Source/ObservableVectorTests.cpp
+        ../../src/main.cpp
+        ../../src/Vector2DTests.cpp
+        ../../src/ObservableVectorTests.cpp
     }
 }

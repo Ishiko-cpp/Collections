@@ -152,13 +152,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\main.cpp" />
-    <ClCompile Include="..\..\Source\Vector2DTests.cpp" />
-    <ClCompile Include="..\..\Source\ObservableVectorTests.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\Vector2DTests.cpp" />
+    <ClCompile Include="..\..\src\ObservableVectorTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Vector2DTests.h" />
-    <ClInclude Include="..\..\Source\ObservableVectorTests.h" />
+    <ClInclude Include="..\..\src\Vector2DTests.h" />
+    <ClInclude Include="..\..\src\ObservableVectorTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
