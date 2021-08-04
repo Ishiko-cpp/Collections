@@ -23,26 +23,26 @@ void Vector2DTests::ConstructorTest1(Test& test)
 {
     Vector2D<int> vector(1, 2);
 
-    ISHTF_FAIL_IF_NEQ(vector.size(), 2);
-    ISHTF_FAIL_IF_NEQ(vector.dimensions(), (std::pair<size_t, size_t>(1, 2)));
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 0), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 1), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(vector.size(), 2);
+    ISHIKO_FAIL_IF_NEQ(vector.dimensions(), (std::pair<size_t, size_t>(1, 2)));
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 0), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 1), 0);
+    ISHIKO_PASS();
 }
 
 void Vector2DTests::ConstructorTest2(Test& test)
 {
     Vector2D<int> vector(3, 2);
 
-    ISHTF_FAIL_IF_NEQ(vector.size(), 6);
-    ISHTF_FAIL_IF_NEQ(vector.dimensions(), (std::pair<size_t, size_t>(3, 2)));
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 0), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 1), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(1, 0), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(1, 1), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(2, 0), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(2, 1), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(vector.size(), 6);
+    ISHIKO_FAIL_IF_NEQ(vector.dimensions(), (std::pair<size_t, size_t>(3, 2)));
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 0), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 1), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(1, 0), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(1, 1), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(2, 0), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(2, 1), 0);
+    ISHIKO_PASS();
 }
 
 void Vector2DTests::GetTest1(Test& test)
@@ -51,9 +51,9 @@ void Vector2DTests::GetTest1(Test& test)
 
     vector.get(0, 0) = 5;
 
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 0), 5);
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 1), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 0), 5);
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 1), 0);
+    ISHIKO_PASS();
 }
 
 void Vector2DTests::GetTest2(Test& test)
@@ -63,11 +63,11 @@ void Vector2DTests::GetTest2(Test& test)
     vector.get(1, 0) = 5;
     vector.get(2, 1) = 6;
 
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 0), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(0, 1), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(1, 0), 5);
-    ISHTF_FAIL_IF_NEQ(vector.get(1, 1), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(2, 0), 0);
-    ISHTF_FAIL_IF_NEQ(vector.get(2, 1), 6);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 0), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(0, 1), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(1, 0), 5);
+    ISHIKO_FAIL_IF_NEQ(vector.get(1, 1), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(2, 0), 0);
+    ISHIKO_FAIL_IF_NEQ(vector.get(2, 1), 6);
+    ISHIKO_PASS();
 }
