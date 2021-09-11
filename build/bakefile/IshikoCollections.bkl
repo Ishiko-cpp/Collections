@@ -1,6 +1,7 @@
-toolsets = gnu vs2017 vs2015 vs2013;
+toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
+vs2019.solutionfile = ../vc16/IshikoCollections.sln;
 vs2017.solutionfile = ../vc15/IshikoCollections.sln;
 vs2015.solutionfile = ../vc14/IshikoCollections.sln;
 vs2013.solutionfile = ../vc12/IshikoCollections.sln;
@@ -30,7 +31,6 @@ library IshikoCollections
     headers
     {
         ../../include/Ishiko/Collections.h
-
         ../../include/Ishiko/Collections/linkoptions.h
         ../../include/Ishiko/Collections/Vector2D.h
         ../../include/Ishiko/Collections/ObservableVector.h
