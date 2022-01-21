@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_COLLECTIONS_TESTS_VECTOR2DTESTS_H_
 #define _ISHIKO_COLLECTIONS_TESTS_VECTOR2DTESTS_H_
 
-#include <Ishiko/Tests/Core.h>
+#include <Ishiko/Tests/Core.hpp>
 
 class Vector2DTests : public Ishiko::Tests::TestSequence
 {

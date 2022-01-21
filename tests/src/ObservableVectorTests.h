@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2018-2021 Xavier Leclercq
+    Copyright (c) 2018-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
@@ -8,7 +8,7 @@
 #define _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
 
 #include "Ishiko/Collections/ObservableVector.h"
-#include <Ishiko/Tests/Core.h>
+#include <Ishiko/Tests/Core.hpp>
 
 class ObservableVectorTests : public Ishiko::Tests::TestSequence
 {
