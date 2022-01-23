@@ -5,7 +5,7 @@
 */
 
 #include "Vector2DTests.h"
-#include "Ishiko/Collections/Vector2D.h"
+#include "Ishiko/Collections/Vector2D.hpp"
 
 using namespace Ishiko::Collections;
 using namespace Ishiko::Tests;
