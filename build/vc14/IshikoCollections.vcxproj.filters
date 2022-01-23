@@ -17,16 +17,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\Collections.h">
+    <ClInclude Include="..\..\include\Ishiko\Collections.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Collections\linkoptions.h">
+    <ClInclude Include="..\..\include\Ishiko\Collections\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Collections\Vector2D.h">
+    <ClInclude Include="..\..\include\Ishiko\Collections\Vector2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Collections\ObservableVector.h">
+    <ClInclude Include="..\..\include\Ishiko\Collections\ObservableVector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
