@@ -13,7 +13,7 @@
 class ObservableVectorTests : public Ishiko::Tests::TestSequence
 {
 public:
-    ObservableVectorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    ObservableVectorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);

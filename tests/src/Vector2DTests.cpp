@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
@@ -10,8 +10,8 @@
 using namespace Ishiko::Collections;
 using namespace Ishiko::Tests;
 
-Vector2DTests::Vector2DTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "Vector2D tests", environment)
+Vector2DTests::Vector2DTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "Vector2D tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
