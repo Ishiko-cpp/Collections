@@ -10,6 +10,4 @@
 #include "Collections/ObservableVector.hpp"
 #include "Collections/Vector2D.hpp"
 
-#include "Collections/linkoptions.hpp"
-
 #endif
