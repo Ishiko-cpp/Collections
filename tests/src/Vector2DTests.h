@@ -12,7 +12,7 @@
 class Vector2DTests : public Ishiko::Tests::TestSequence
 {
 public:
-    Vector2DTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    Vector2DTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);

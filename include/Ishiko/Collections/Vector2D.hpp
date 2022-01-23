@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
+    See https://github.com/ishiko-cpp/collections/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_COLLECTIONS_VECTOR2D_H_
-#define _ISHIKO_COLLECTIONS_VECTOR2D_H_
+#ifndef _ISHIKO_CPP_COLLECTIONS_VECTOR2D_HPP_
+#define _ISHIKO_CPP_COLLECTIONS_VECTOR2D_HPP_
 
 #include <vector>
 #include <memory>

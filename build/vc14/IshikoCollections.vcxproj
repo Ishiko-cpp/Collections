@@ -150,10 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\Collections.h" />
-    <ClInclude Include="..\..\include\Ishiko\Collections\linkoptions.h" />
-    <ClInclude Include="..\..\include\Ishiko\Collections\Vector2D.h" />
-    <ClInclude Include="..\..\include\Ishiko\Collections\ObservableVector.h" />
+    <ClInclude Include="..\..\include\Ishiko\Collections.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Collections\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Collections\Vector2D.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Collections\ObservableVector.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
