@@ -30,9 +30,9 @@ library IshikoCollections
 
     headers
     {
-        ../../include/Ishiko/Collections.h
-        ../../include/Ishiko/Collections/linkoptions.h
-        ../../include/Ishiko/Collections/Vector2D.h
-        ../../include/Ishiko/Collections/ObservableVector.h
+        ../../include/Ishiko/Collections.hpp
+        ../../include/Ishiko/Collections/linkoptions.hpp
+        ../../include/Ishiko/Collections/Vector2D.hpp
+        ../../include/Ishiko/Collections/ObservableVector.hpp
     }
 }

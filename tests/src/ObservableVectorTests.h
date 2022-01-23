@@ -7,13 +7,13 @@
 #ifndef _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
 #define _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
 
-#include "Ishiko/Collections/ObservableVector.h"
+#include "Ishiko/Collections/ObservableVector.hpp"
 #include <Ishiko/Tests/Core.hpp>
 
 class ObservableVectorTests : public Ishiko::Tests::TestSequence
 {
 public:
-    ObservableVectorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    ObservableVectorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
