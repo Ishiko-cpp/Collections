@@ -10,40 +10,40 @@
 #include "Ishiko/Collections/ObservableVector.hpp"
 #include <Ishiko/Tests/Core.hpp>
 
-class ObservableVectorTests : public Ishiko::Tests::TestSequence
+class ObservableVectorTests : public Ishiko::TestSequence
 {
 public:
-    ObservableVectorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    ObservableVectorTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void ConstructorTest2(Ishiko::Tests::Test& test);
-    static void PushBackTest1(Ishiko::Tests::Test& test);
-    static void PushBackTest2(Ishiko::Tests::Test& test);
-    static void PushBackTest3(Ishiko::Tests::Test& test);
-    static void PushBackTest4(Ishiko::Tests::Test& test);
-    static void PushBackTest5(Ishiko::Tests::Test& test);
-    static void PushBackTest6(Ishiko::Tests::Test& test);
-    static void EraseTest1(Ishiko::Tests::Test& test);
-    static void EraseTest2(Ishiko::Tests::Test& test);
-    static void EraseTest3(Ishiko::Tests::Test& test);
-    static void EraseTest4(Ishiko::Tests::Test& test);
-    static void EraseTest5(Ishiko::Tests::Test& test);
-    static void EraseTest6(Ishiko::Tests::Test& test);
-    static void TwoObserversTest1(Ishiko::Tests::Test& test);
-    static void TwoObserversTest2(Ishiko::Tests::Test& test);
-    static void TheSameObserverTwiceTest1(Ishiko::Tests::Test& test);
-    static void TheSameObserverTwiceTest2(Ishiko::Tests::Test& test);
-    static void ObserverRemovalTest1(Ishiko::Tests::Test& test);
-    static void ObserverRemovalTest2(Ishiko::Tests::Test& test);
-    static void ObserverRemovalTest3(Ishiko::Tests::Test& test);
-    static void ObserverRemovalTest4(Ishiko::Tests::Test& test);
-    static void ObserverRemovalTest5(Ishiko::Tests::Test& test);
-    static void ObserverRemovalTest6(Ishiko::Tests::Test& test);
-    static void ObserverDeletionTest1(Ishiko::Tests::Test& test);
-    static void ObserverDeletionTest2(Ishiko::Tests::Test& test);
-    static void TwoVectorsTest1(Ishiko::Tests::Test& test);
-    static void TwoVectorsTest2(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void ConstructorTest2(Ishiko::Test& test);
+    static void PushBackTest1(Ishiko::Test& test);
+    static void PushBackTest2(Ishiko::Test& test);
+    static void PushBackTest3(Ishiko::Test& test);
+    static void PushBackTest4(Ishiko::Test& test);
+    static void PushBackTest5(Ishiko::Test& test);
+    static void PushBackTest6(Ishiko::Test& test);
+    static void EraseTest1(Ishiko::Test& test);
+    static void EraseTest2(Ishiko::Test& test);
+    static void EraseTest3(Ishiko::Test& test);
+    static void EraseTest4(Ishiko::Test& test);
+    static void EraseTest5(Ishiko::Test& test);
+    static void EraseTest6(Ishiko::Test& test);
+    static void TwoObserversTest1(Ishiko::Test& test);
+    static void TwoObserversTest2(Ishiko::Test& test);
+    static void TheSameObserverTwiceTest1(Ishiko::Test& test);
+    static void TheSameObserverTwiceTest2(Ishiko::Test& test);
+    static void ObserverRemovalTest1(Ishiko::Test& test);
+    static void ObserverRemovalTest2(Ishiko::Test& test);
+    static void ObserverRemovalTest3(Ishiko::Test& test);
+    static void ObserverRemovalTest4(Ishiko::Test& test);
+    static void ObserverRemovalTest5(Ishiko::Test& test);
+    static void ObserverRemovalTest6(Ishiko::Test& test);
+    static void ObserverDeletionTest1(Ishiko::Test& test);
+    static void ObserverDeletionTest2(Ishiko::Test& test);
+    static void TwoVectorsTest1(Ishiko::Test& test);
+    static void TwoVectorsTest2(Ishiko::Test& test);
 };
 
 class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer
