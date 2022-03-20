@@ -6,8 +6,8 @@
 
 #include "ObservableVectorTests.h"
 
+using namespace Ishiko;
 using namespace Ishiko::Collections;
-using namespace Ishiko::Tests;
 
 ObservableVectorTests::ObservableVectorTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "ObservableVector tests", context)
@@ -46,16 +46,16 @@ void ObservableVectorTests::ConstructorTest1(Test& test)
 {
     ObservableVector<int> vector;
 
-    ISHIKO_FAIL_IF_NEQ(vector.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(vector.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ConstructorTest2(Test& test)
 {
     DerivedIntVector vector;
     
-    ISHIKO_FAIL_IF_NEQ(vector.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(vector.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::PushBackTest1(Test& test)
@@ -63,9 +63,9 @@ void ObservableVectorTests::PushBackTest1(Test& test)
     ObservableVector<int> vector;
     vector.pushBack(123);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::PushBackTest2(Test& test)
@@ -73,9 +73,9 @@ void ObservableVectorTests::PushBackTest2(Test& test)
     DerivedIntVector vector;
     vector.pushBack(123);
     
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::PushBackTest3(Test& test)
@@ -87,11 +87,11 @@ void ObservableVectorTests::PushBackTest3(Test& test)
 
     vector.pushBack(123);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::PushBackTest4(Test& test)
@@ -103,11 +103,11 @@ void ObservableVectorTests::PushBackTest4(Test& test)
 
     vector.pushBack(123);
     
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::PushBackTest5(Test& test)
@@ -121,15 +121,15 @@ void ObservableVectorTests::PushBackTest5(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::PushBackTest6(Test& test)
@@ -143,15 +143,15 @@ void ObservableVectorTests::PushBackTest6(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
     
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::EraseTest1(Test& test)
@@ -160,8 +160,8 @@ void ObservableVectorTests::EraseTest1(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    ISHIKO_FAIL_IF_NEQ(vector.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(vector.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::EraseTest2(Test& test)
@@ -170,8 +170,8 @@ void ObservableVectorTests::EraseTest2(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
     
-    ISHIKO_FAIL_IF_NEQ(vector.size(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(vector.size(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::EraseTest3(Test& test)
@@ -184,11 +184,11 @@ void ObservableVectorTests::EraseTest3(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    ISHIKO_FAIL_IF_NEQ(vector.size(), 0);
-    ISHIKO_ABORT_IF_NEQ(observer->m_deletions.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+    ISHIKO_TEST_FAIL_IF_NEQ(vector.size(), 0);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
         (std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::EraseTest4(Test& test)
@@ -201,11 +201,11 @@ void ObservableVectorTests::EraseTest4(Test& test)
     vector.pushBack(123);
     vector.erase(vector.begin());
 
-    ISHIKO_FAIL_IF_NEQ(vector.size(), 0);
-    ISHIKO_ABORT_IF_NEQ(observer->m_deletions.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+    ISHIKO_TEST_FAIL_IF_NEQ(vector.size(), 0);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
         (std::tuple<size_t, size_t, std::vector<int>>(0, 1, { 123 })));
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::EraseTest5(Test& test)
@@ -220,11 +220,11 @@ void ObservableVectorTests::EraseTest5(Test& test)
     vector.pushBack(789);
     vector.erase(vector.begin() + 1, vector.end());
 
-    ISHIKO_FAIL_IF_NEQ(vector.size(), 1);
-    ISHIKO_ABORT_IF_NEQ(observer->m_deletions.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+    ISHIKO_TEST_FAIL_IF_NEQ(vector.size(), 1);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
         (std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::EraseTest6(Test& test)
@@ -239,11 +239,11 @@ void ObservableVectorTests::EraseTest6(Test& test)
     vector.pushBack(789);
     vector.erase(vector.begin() + 1, vector.end());
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_deletions.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_deletions.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_deletions[&vector][0],
         (std::tuple<size_t, size_t, std::vector<int>>(1, 3, { 456, 789 })));
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::TwoObserversTest1(Test& test)
@@ -259,19 +259,19 @@ void ObservableVectorTests::TwoObserversTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::TwoObserversTest2(Test& test)
@@ -287,19 +287,19 @@ void ObservableVectorTests::TwoObserversTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::TheSameObserverTwiceTest1(Test& test)
@@ -314,15 +314,15 @@ void ObservableVectorTests::TheSameObserverTwiceTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::TheSameObserverTwiceTest2(Test& test)
@@ -337,15 +337,15 @@ void ObservableVectorTests::TheSameObserverTwiceTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
     
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverRemovalTest1(Test& test)
@@ -364,17 +364,17 @@ void ObservableVectorTests::ObserverRemovalTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverRemovalTest2(Test& test)
@@ -393,17 +393,17 @@ void ObservableVectorTests::ObserverRemovalTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
-    ISHIKO_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer1->m_additions[&vector].size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer1->m_additions[&vector][2], (std::pair<size_t, int>(2, 789)));
+    ISHIKO_TEST_ABORT_IF_NEQ(observer2->m_additions[&vector].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer2->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverRemovalTest3(Test& test)
@@ -424,14 +424,14 @@ void ObservableVectorTests::ObserverRemovalTest3(Test& test)
 
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 2);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverRemovalTest4(Test& test)
@@ -452,14 +452,14 @@ void ObservableVectorTests::ObserverRemovalTest4(Test& test)
 
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 2);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][1], (std::pair<size_t, int>(1, 456)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverRemovalTest5(Test& test)
@@ -476,12 +476,12 @@ void ObservableVectorTests::ObserverRemovalTest5(Test& test)
 
     vector.pushBack(456);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 2);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverRemovalTest6(Test& test)
@@ -498,12 +498,12 @@ void ObservableVectorTests::ObserverRemovalTest6(Test& test)
 
     vector.pushBack(456);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 2);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverDeletionTest1(Test& test)
@@ -522,13 +522,13 @@ void ObservableVectorTests::ObserverDeletionTest1(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(additions.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(additions[0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(additions.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(additions[0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::ObserverDeletionTest2(Test& test)
@@ -547,13 +547,13 @@ void ObservableVectorTests::ObserverDeletionTest2(Test& test)
     vector.pushBack(456);
     vector.pushBack(789);
 
-    ISHIKO_ABORT_IF_NEQ(vector.size(), 3);
-    ISHIKO_FAIL_IF_NEQ(vector[0], 123);
-    ISHIKO_FAIL_IF_NEQ(vector[1], 456);
-    ISHIKO_FAIL_IF_NEQ(vector[2], 789);
-    ISHIKO_ABORT_IF_NEQ(additions.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(additions[0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[0], 123);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[1], 456);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector[2], 789);
+    ISHIKO_TEST_ABORT_IF_NEQ(additions.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(additions[0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::TwoVectorsTest1(Test& test)
@@ -568,13 +568,13 @@ void ObservableVectorTests::TwoVectorsTest1(Test& test)
     vector1.pushBack(123);
     vector2.pushBack(456);
 
-    ISHIKO_ABORT_IF_NEQ(vector1.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(vector1[0], 123);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector1].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector1][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector2].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector2][0], (std::pair<size_t, int>(0, 456)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector1.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector1[0], 123);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector1].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector1][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector2].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector2][0], (std::pair<size_t, int>(0, 456)));
+    ISHIKO_TEST_PASS();
 }
 
 void ObservableVectorTests::TwoVectorsTest2(Test& test)
@@ -589,13 +589,13 @@ void ObservableVectorTests::TwoVectorsTest2(Test& test)
     vector1.pushBack(123);
     vector2.pushBack(456);
 
-    ISHIKO_ABORT_IF_NEQ(vector1.size(), 1);
-    ISHIKO_FAIL_IF_NEQ(vector1[0], 123);
-    ISHIKO_ABORT_IF_NEQ(observer->m_additions[&vector1].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector1][0], (std::pair<size_t, int>(0, 123)));
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector2].size(), 1);
-    ISHIKO_FAIL_IF_NEQ(observer->m_additions[&vector2][0], (std::pair<size_t, int>(0, 456)));
-    ISHIKO_PASS();
+    ISHIKO_TEST_ABORT_IF_NEQ(vector1.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(vector1[0], 123);
+    ISHIKO_TEST_ABORT_IF_NEQ(observer->m_additions[&vector1].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector1][0], (std::pair<size_t, int>(0, 123)));
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector2].size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(observer->m_additions[&vector2][0], (std::pair<size_t, int>(0, 456)));
+    ISHIKO_TEST_PASS();
 }
 
 void IntVectorObserver::onElementAdded(const ObservableVector<int>& source, size_t pos,

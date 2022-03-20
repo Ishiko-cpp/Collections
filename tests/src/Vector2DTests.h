@@ -9,16 +9,16 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class Vector2DTests : public Ishiko::Tests::TestSequence
+class Vector2DTests : public Ishiko::TestSequence
 {
 public:
-    Vector2DTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    Vector2DTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void ConstructorTest2(Ishiko::Tests::Test& test);
-    static void GetTest1(Ishiko::Tests::Test& test);
-    static void GetTest2(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void ConstructorTest2(Ishiko::Test& test);
+    static void GetTest1(Ishiko::Test& test);
+    static void GetTest2(Ishiko::Test& test);
 };
 
 #endif
