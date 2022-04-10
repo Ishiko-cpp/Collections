@@ -4,10 +4,10 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_COLLECTIONS_TESTS_VECTOR2DTESTS_H_
-#define _ISHIKO_COLLECTIONS_TESTS_VECTOR2DTESTS_H_
+#ifndef _ISHIKO_CPP_COLLECTIONS_TESTS_VECTOR2DTESTS_HPP_
+#define _ISHIKO_CPP_COLLECTIONS_TESTS_VECTOR2DTESTS_HPP_
 
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 class Vector2DTests : public Ishiko::TestSequence
 {

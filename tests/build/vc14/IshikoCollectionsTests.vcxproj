@@ -157,8 +157,8 @@
     <ClCompile Include="..\..\src\ObservableVectorTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\Vector2DTests.h" />
-    <ClInclude Include="..\..\src\ObservableVectorTests.h" />
+    <ClInclude Include="..\..\src\Vector2DTests.hpp" />
+    <ClInclude Include="..\..\src\ObservableVectorTests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

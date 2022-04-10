@@ -12,8 +12,6 @@
 
 namespace Ishiko
 {
-namespace Collections
-{
     
 template<class T, class Allocator = std::allocator<T>>
 class Vector2D
@@ -64,7 +62,6 @@ std::pair<size_t, size_t>  Vector2D<T, Allocator>::dimensions() const noexcept
     return std::pair<size_t, size_t>(m_rows, m_columns);
 }
 
-}
 }
 
 #endif
