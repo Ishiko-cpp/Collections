@@ -6,7 +6,7 @@
 
 #include "Vector2DTests.h"
 #include "ObservableVectorTests.h"
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 using namespace Ishiko;
 
