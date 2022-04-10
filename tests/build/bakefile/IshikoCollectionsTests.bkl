@@ -1,6 +1,6 @@
 ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/collections/include/Ishiko/Collections.bkl;
-import $(ishikopath)/test-framework/include/Ishiko/Tests/Core.bkl;
+import $(ishikopath)/test-framework/include/Ishiko/TestFramework/Core.bkl;
 
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
@@ -10,20 +10,20 @@ vs2017.solutionfile = ../vc15/IshikoCollectionsTests.sln;
 vs2015.solutionfile = ../vc14/IshikoCollectionsTests.sln;
 vs2013.solutionfile = ../vc12/IshikoCollectionsTests.sln;
 
-program IshikoCollectionsTests : IshikoCollections, IshikoTestsCore
+program IshikoCollectionsTests : IshikoCollections, IshikoTestFrameworkCore
 {
     archs = x86 x86_64;
 
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += IshikoCollections IshikoTestsCore IshikoProcess IshikoErrors boost_filesystem boost_system;
+        libs += IshikoCollections IshikoTestFrameworkCore IshikoProcess IshikoErrors boost_filesystem boost_system;
     }
 
     headers
     {
-        ../../src/Vector2DTests.h
-        ../../src/ObservableVectorTests.h
+        ../../src/Vector2DTests.hpp
+        ../../src/ObservableVectorTests.hpp
     }
 
     sources

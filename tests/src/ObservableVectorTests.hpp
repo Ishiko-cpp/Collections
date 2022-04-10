@@ -4,11 +4,11 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
-#define _ISHIKO_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
+#ifndef _ISHIKO_CPP_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_HPP_
+#define _ISHIKO_CPP_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_HPP_
 
 #include "Ishiko/Collections/ObservableVector.hpp"
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 class ObservableVectorTests : public Ishiko::TestSequence
 {
@@ -46,19 +46,18 @@ private:
     static void TwoVectorsTest2(Ishiko::Test& test);
 };
 
-class IntVectorObserver : public Ishiko::Collections::ObservableVector<int>::Observer
+class IntVectorObserver : public Ishiko::ObservableVector<int>::Observer
 {
 public:
-    void onElementAdded(const Ishiko::Collections::ObservableVector<int>& source, size_t pos,
-        const int& value) override;
-    void onElementsRemoved(const Ishiko::Collections::ObservableVector<int>& source, size_t first,
-        size_t last, const std::vector<int>& removedElements) override;
+    void onElementAdded(const Ishiko::ObservableVector<int>& source, size_t pos, const int& value) override;
+    void onElementsRemoved(const Ishiko::ObservableVector<int>& source, size_t first, size_t last,
+        const std::vector<int>& removedElements) override;
 
     std::map<void*, std::vector<std::pair<size_t, int>>> m_additions;
     std::map<void*, std::vector<std::tuple<size_t, size_t, std::vector<int>>>> m_deletions;
 };
 
-class DerivedIntVector : public Ishiko::Collections::ObservableVector<int, DerivedIntVector>
+class DerivedIntVector : public Ishiko::ObservableVector<int, DerivedIntVector>
 {
 public:
     static const bool sm_derived = true;

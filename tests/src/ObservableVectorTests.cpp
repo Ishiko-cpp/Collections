@@ -4,10 +4,9 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#include "ObservableVectorTests.h"
+#include "ObservableVectorTests.hpp"
 
 using namespace Ishiko;
-using namespace Ishiko::Collections;
 
 ObservableVectorTests::ObservableVectorTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "ObservableVector tests", context)
