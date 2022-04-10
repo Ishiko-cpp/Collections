@@ -4,7 +4,7 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#include "Vector2DTests.h"
+#include "Vector2DTests.hpp"
 #include "Ishiko/Collections/Vector2D.hpp"
 
 using namespace Ishiko;

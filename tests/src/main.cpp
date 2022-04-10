@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#include "Vector2DTests.h"
-#include "ObservableVectorTests.h"
+#include "Vector2DTests.hpp"
+#include "ObservableVectorTests.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 
 using namespace Ishiko;

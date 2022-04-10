@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
-#define _ISHIKO_CPP_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_H_
+#ifndef _ISHIKO_CPP_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_HPP_
+#define _ISHIKO_CPP_COLLECTIONS_TESTS_OBSERVABLEVECTORTESTS_HPP_
 
 #include "Ishiko/Collections/ObservableVector.hpp"
 #include <Ishiko/TestFramework/Core.hpp>

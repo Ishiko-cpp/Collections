@@ -22,8 +22,8 @@ program IshikoCollectionsTests : IshikoCollections, IshikoTestFrameworkCore
 
     headers
     {
-        ../../src/Vector2DTests.h
-        ../../src/ObservableVectorTests.h
+        ../../src/Vector2DTests.hpp
+        ../../src/ObservableVectorTests.hpp
     }
 
     sources

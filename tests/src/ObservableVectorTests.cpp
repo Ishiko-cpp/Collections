@@ -4,7 +4,7 @@
     See https://github.com/Ishiko-cpp/Collections/blob/main/LICENSE.txt
 */
 
-#include "ObservableVectorTests.h"
+#include "ObservableVectorTests.hpp"
 
 using namespace Ishiko;
 using namespace Ishiko::Collections;
