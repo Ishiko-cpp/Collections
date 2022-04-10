@@ -8,7 +8,6 @@
 #include "Ishiko/Collections/Vector2D.hpp"
 
 using namespace Ishiko;
-using namespace Ishiko::Collections;
 
 Vector2DTests::Vector2DTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Vector2D tests", context)

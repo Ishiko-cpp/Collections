@@ -7,7 +7,6 @@
 #include "ObservableVectorTests.hpp"
 
 using namespace Ishiko;
-using namespace Ishiko::Collections;
 
 ObservableVectorTests::ObservableVectorTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "ObservableVector tests", context)
