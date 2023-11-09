@@ -5,8 +5,8 @@ jobs:
       - image: ishiko/gcc-ishiko-cpp-build-prerequisites:0.3.0
     steps:
       - run: 
-          name: "Set ISHIKO_CPP environment variable and create workspace directory"
-          command: mkdir -p /projects/ishiko/cpp && echo 'export ISHIKO_CPP="/projects/ishiko/cpp"' >> $BASH_ENV
+          name: "Set ISHIKO_CPP_ROOT environment variable and create workspace directory"
+          command: mkdir -p /projects/ishiko/cpp && echo 'export ISHIKO_CPP_ROOT="/projects/ishiko/cpp"' >> $BASH_ENV
       - checkout:
           path: /projects/ishiko/cpp/collections
       - run:
