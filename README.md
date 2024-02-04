@@ -15,7 +15,7 @@ with features not available in either of them.
 
 [![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/collections.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/collections)
 
-This project is intended for use by its author only.
+This project is in early development and not ready for public use yet. 
 
 # Usage
 
@@ -27,6 +27,6 @@ None.
 
 ## License
 
-Copyright (c) 2018-2023 Xavier Leclercq\
+Copyright (c) 2018-2024 Xavier Leclercq\
 Released under the MIT License\
 See https://github.com/ishiko-cpp/collections/blob/main/LICENSE.txt
