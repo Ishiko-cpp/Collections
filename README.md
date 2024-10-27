@@ -27,6 +27,6 @@ None.
 
 ## License
 
-Copyright (c) 2018-2024 Xavier Leclercq\
-Released under the MIT License\
+Copyright (c) 2005-2024 Xavier Leclercq\
+This work is licensed under the Boost Software License 1.0\
 See https://github.com/ishiko-cpp/collections/blob/main/LICENSE.txt
